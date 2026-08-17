@@ -25,7 +25,6 @@ A state-of-the-art engineering portfolio and interactive hardware archive for **
   10. **Project 10 — Remote Biometric Telemetry Node** (ESP8266 NodeMCU, MAX30102 Photoplethysmography Pulse Oximeter, AC/DC Peak Detection DSP, SSD1306 Waveform OLED, Blynk Cloud Alert Webhooks).
 
 - **Interactive DSP Research Lab**: Real-time canvas oscilloscope with configurable sine/square signals, Gaussian noise injection, low-pass filter simulation, and live derivative ($dI/dt$) overlays.
-- **Hardware Bench**: Comprehensive component inspector with operating voltages, protocols, pinouts, and key specs.
 - **Academic & Industry Milestones**: Career timeline covering embedded prototypes, awards, published research, and hardware deployments.
 
 ---

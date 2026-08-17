@@ -6,7 +6,7 @@ export const Journey: React.FC = () => {
     <section id="journey" className="py-28 px-6 md:px-12 relative bg-[#080808] border-t border-white/5">
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center space-x-3 mb-6">
-          <span className="text-xs font-mono text-[#00f0ff] tracking-widest uppercase">// 05 • EVOLUTION TIMELINE</span>
+          <span className="text-xs font-mono text-[#00f0ff] tracking-widest uppercase">// 04 • EVOLUTION TIMELINE</span>
           <div className="h-[1px] flex-1 bg-gradient-to-r from-[#00f0ff]/30 to-transparent" />
         </div>
 

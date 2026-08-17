@@ -19,7 +19,6 @@ export const Footer: React.FC = () => {
           <a href="#about" className="hover:text-[#00f0ff] transition-colors">ABOUT</a>
           <a href="#projects" className="hover:text-[#00f0ff] transition-colors">PROJECTS</a>
           <a href="#research" className="hover:text-[#00f0ff] transition-colors">RESEARCH</a>
-          <a href="#hardware" className="hover:text-[#00f0ff] transition-colors">HARDWARE</a>
           <a href="#contact" className="hover:text-[#00f0ff] transition-colors">CONTACT</a>
         </nav>
 

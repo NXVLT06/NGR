@@ -255,9 +255,8 @@ function Navbar() {
     { label: "DOMAINS", short: "03", icon: "▦", href: "#domains", id: "domains" },
     { label: "PROJECTS", short: "04", icon: "◫", href: "#projects", id: "projects" },
     { label: "RESEARCH", short: "05", icon: "∿", href: "#research", id: "research" },
-    { label: "HARDWARE", short: "06", icon: "⚙", href: "#hardware", id: "hardware" },
-    { label: "JOURNEY", short: "07", icon: "⏳", href: "#journey", id: "journey" },
-    { label: "CONTACT", short: "08", icon: "✉", href: "#contact", id: "contact" }
+    { label: "JOURNEY", short: "06", icon: "⏳", href: "#journey", id: "journey" },
+    { label: "CONTACT", short: "07", icon: "✉", href: "#contact", id: "contact" }
   ];
 
   useEffect(() => {
@@ -1833,114 +1832,7 @@ function ResearchLab() {
 }
 
 // ==========================================
-// 13. HARDWARE LAB SECTION
-// ==========================================
-function HardwareLab() {
-  const hardwareList = useMemo(() => window.PORTFOLIO_DATA?.hardwareComponents || [], []);
-  const [activeChip, setActiveChip] = useState(hardwareList[0] || null);
-
-  return (
-    <section id="hardware" className="py-28 px-6 md:px-12 relative bg-white border-t border-slate-200 tech-grid-bg">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex items-center space-x-3 mb-6 reveal-left-on-scroll">
-          <span className="text-xs font-mono font-bold text-black tracking-widest uppercase">// 05 • HARDWARE BENCH</span>
-          <div className="h-[1px] flex-1 bg-slate-200" />
-        </div>
-
-        <div className="mb-16 reveal-on-scroll">
-          <h2 className="font-space font-extrabold text-4xl sm:text-5xl md:text-6xl text-black tracking-tight leading-[1.05]">
-            THE <span>HARDWARE LAB</span>
-          </h2>
-          <p className="text-slate-600 font-sans text-base sm:text-lg mt-3 max-w-2xl">
-            Interactive silicon and sensor registry. Hover or click any component to inspect its pinouts, bus protocols, and hardware specifications.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-3.5">
-            {hardwareList.map((hw) => (
-              <div
-                key={hw.id}
-                onClick={() => {
-                  sfx.playClick();
-                  setActiveChip(hw);
-                }}
-                onMouseEnter={() => {
-                  sfx.playHover();
-                  setActiveChip(hw);
-                }}
-                className={`p-4 rounded-xl border transition-all duration-200 cursor-pointer flex flex-col justify-between h-32 ${
-                  activeChip?.id === hw.id
-                    ? "bg-black text-white border-black shadow-md scale-[1.02]"
-                    : "bg-slate-50 text-black border-slate-200 hover:border-black"
-                }`}
-              >
-                <div className="flex items-start justify-between">
-                  <span className={`text-[10px] font-mono font-bold uppercase ${activeChip?.id === hw.id ? "text-slate-300" : "text-slate-500"}`}>{hw.category.split('/')[0]}</span>
-                  <span className={`w-1.5 h-1.5 rounded-full ${activeChip?.id === hw.id ? "bg-white" : "bg-black"}`} />
-                </div>
-                <div>
-                  <h4 className="font-space font-bold text-sm">{hw.name}</h4>
-                  <span className={`text-[10px] font-mono mt-1 block ${activeChip?.id === hw.id ? "text-slate-300" : "text-slate-600"}`}>{hw.badge}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {activeChip && (
-            <div className="lg:col-span-5 p-6 sm:p-8 rounded-2xl bg-white border border-slate-300 shadow-md space-y-6">
-              <div className="flex items-start justify-between pb-4 border-b border-slate-200">
-                <div>
-                  <span className="text-xs font-mono font-bold text-slate-500 uppercase block">// SILICON INSPECTOR</span>
-                  <h3 className="font-space font-bold text-2xl text-black mt-1">{activeChip.name}</h3>
-                  <span className="text-xs font-mono text-slate-600 block mt-0.5">{activeChip.category}</span>
-                </div>
-                <span className="px-3 py-1 text-xs font-mono font-bold text-black bg-slate-100 border border-slate-300 rounded-md">
-                  {activeChip.badge}
-                </span>
-              </div>
-
-              <p className="text-sm font-sans text-slate-700 leading-relaxed font-normal">
-                {activeChip.description}
-              </p>
-
-              <div className="space-y-2.5 p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs font-mono">
-                <div className="flex justify-between border-b border-slate-200 pb-1.5">
-                  <span className="text-slate-600">VOLTAGE RANGE:</span>
-                  <span className="text-black font-bold">{activeChip.specs.voltage}</span>
-                </div>
-                <div className="flex justify-between border-b border-slate-200 pb-1.5">
-                  <span className="text-slate-600">BUS INTERFACE:</span>
-                  <span className="text-black font-bold">{activeChip.specs.interface}</span>
-                </div>
-                <div className="flex justify-between border-b border-slate-200 pb-1.5">
-                  <span className="text-slate-600">PACKAGE FORM:</span>
-                  <span className="text-black font-bold">{activeChip.specs.package}</span>
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <span className="text-[10px] font-mono font-bold text-slate-500 uppercase block tracking-wider">
-                  PINOUT MATRIX PREVIEW
-                </span>
-                <div className="flex flex-wrap gap-1.5">
-                  {activeChip.pinoutPreview.map((pin, i) => (
-                    <span key={i} className="px-2 py-0.5 text-[10px] font-mono font-medium bg-slate-100 text-slate-800 border border-slate-300 rounded">
-                      {pin}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ==========================================
-// 14. MY JOURNEY SECTION
+// 13. MY JOURNEY SECTION
 // ==========================================
 function Journey() {
   const milestones = useMemo(() => window.PORTFOLIO_DATA?.journeyMilestones || [], []);
@@ -1950,7 +1842,7 @@ function Journey() {
     <section id="journey" className="py-28 px-6 md:px-12 relative bg-slate-50 border-t border-slate-200">
       <div className="max-w-5xl mx-auto">
         <div className="flex items-center space-x-3 mb-6 reveal-left-on-scroll">
-          <span className="text-xs font-mono font-bold text-black tracking-widest uppercase">// 06 • MY JOURNEY</span>
+          <span className="text-xs font-mono font-bold text-black tracking-widest uppercase">// 05 • MY JOURNEY</span>
           <div className="h-[1px] flex-1 bg-slate-200" />
         </div>
 
@@ -2023,7 +1915,7 @@ function Journey() {
 }
 
 // ==========================================
-// 15. CONTACT SECTION
+// 14. CONTACT SECTION
 // ==========================================
 function Contact() {
   const [copied, setCopied] = useState(false);
@@ -2133,7 +2025,6 @@ function Footer() {
           <a href="#domains" className="hover:text-white transition-colors">DOMAINS</a>
           <a href="#projects" className="hover:text-white transition-colors">PROJECTS</a>
           <a href="#research" className="hover:text-white transition-colors">RESEARCH</a>
-          <a href="#hardware" className="hover:text-white transition-colors">HARDWARE</a>
           <a href="#journey" className="hover:text-white transition-colors">JOURNEY</a>
           <a href="#contact" className="hover:text-white transition-colors">CONTACT</a>
         </nav>
@@ -2199,7 +2090,6 @@ function App() {
         <EngineeringDomains />
         <ProjectsSection onSelectProject={(p) => setSelectedProject(p)} />
         <ResearchLab />
-        <HardwareLab />
         <Journey />
         <Contact />
       </main>

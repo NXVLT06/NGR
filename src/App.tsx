@@ -7,7 +7,6 @@ import { TechMarquee } from './components/TechMarquee';
 import { Projects } from './components/Projects';
 import { ProjectDetail } from './components/ProjectDetail';
 import { Research } from './components/Research';
-import { HardwareLab } from './components/HardwareLab';
 import { Journey } from './components/Journey';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
@@ -26,7 +25,6 @@ export const App: React.FC = () => {
         <TechMarquee />
         <Projects onSelectProject={(p) => setSelectedProject(p)} />
         <Research />
-        <HardwareLab />
         <Journey />
         <Contact />
       </main>

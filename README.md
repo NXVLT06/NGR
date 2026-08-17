@@ -23,7 +23,7 @@ A state-of-the-art engineering portfolio and interactive hardware archive for **
   8. **Project 08 — Automated Headlight Dipper (Anti-Glare Adaptive Beam)** (Optical Collimator Sensor Tube, LM358 Precision Schmitt Trigger with Hysteresis, 30A Automotive Switching Relays, Flash Blindness Elimination).
   9. **Project 09 — Discrete Traffic Light Control System** (Non-Programmable Hardware Logic, NE555 Astable Multivibrator Clock, CD4017 CMOS Decade Counter, Diode OR Matrix & BC547 Transistor Stages).
   10. **Project 10 — Remote Biometric Telemetry Node** (ESP8266 NodeMCU, MAX30102 Photoplethysmography Pulse Oximeter, AC/DC Peak Detection DSP, SSD1306 Waveform OLED, Blynk Cloud Alert Webhooks).
-  11. **Project 11 — IoT-Based Smart Classroom Monitoring System** (ESP32 Microcontroller, Sequenced Dual-IR Beam Entry/Exit Visitor Counter, LDR Ambient Light Sensing, 5V Opto-Isolated Relays for Lighting & 12V Fan Actuation, Mobile IIoT Dashboard Control).
+  11. **Project 11 — IoT-Based Smart Classroom Monitoring System** (ESP32 Microcontroller, Sequenced Dual-IR Beam Entry/Exit Visitor Counter, LDR Ambient Light Sensing, 5V Opto-Isolated Relays for Lighting & 12V Fan Actuation, Mobile IoT Dashboard Control).
 
 - **Academic & Industry Milestones**: Career timeline covering embedded prototypes, Best Capstone Project Award, Cisco Networking Academy certification (Verified Badge, Course Certificate & 5 Module Achievements), NPTEL IoT, and hardware deployments.
 

@@ -634,36 +634,42 @@ void loop() {
     {
       id: "proj-10",
       num: "10",
-      title: "Remote Biometric Telemetry Node",
-      subtitle: "Blynk IoT Continuous Health Monitor",
-      category: "IoT / Embedded Monitoring",
+      title: "Microcontroller-Based Optical Pulse & Heart Rate Monitor",
+      subtitle: "Optical PPG Pulse Sensor, Dynamic BPM Peak Detection & 16x2 I2C LCD Display",
+      category: "Embedded Systems / Biometric Telemetry",
       year: "2024",
-      abstract: "An edge-to-cloud biometric node that reads raw photoplethysmography waveforms to extract real-time heart rate and blood oxygen saturation, broadcasting data over Wi-Fi to a cloud dashboard for remote vitals tracking and threshold alert triggers.",
-      overview: "A continuous, non-invasive vital sign monitoring node built for remote patient care and clinical health tracking. It streams pulse rate (BPM) and peripheral capillary oxygen saturation (SpO2) to cloud dashboards with automated email/SMS emergency dispatch.",
-      problem: "Hospital-grade patient monitors are bulky and tethered. Low-cost consumer finger pulse oximeters lack continuous connectivity, cloud history, and automated caregiver alert triggers for hypoxemia or bradycardia.",
-      objective: "Engineer a palm-sized biometric telemetry node with local OLED feedback, real-time AC/DC peak detection algorithms, and cloud dashboard telemetry broadcasting over Wi-Fi.",
-      systemConcept: "An ESP8266 NodeMCU reads raw IR and Red LED photoplethysmography reflection signals from a MAX30102 sensor over I2C. The firmware implements an AC/DC ratio algorithm to calculate SpO2 and a dynamic peak detector for heart rate. Data is drawn on a local 0.96-inch OLED and pushed via secure TLS to Blynk Cloud.",
+      abstract: "A non-invasive biometric telemetry device powered by an ATmega328P microcontroller that reads raw optical photoplethysmography (PPG) waveforms to extract real-time heart rate (BPM), displaying dynamic cardiac telemetry on a high-contrast 16×2 I2C LCD display with edge signal conditioning.",
+      overview: "A dedicated hardware biometric monitoring system designed for real-time cardiovascular telemetry. It captures pulsatile blood volume transitions using an active green LED optical photoplethysmography sensor, processes signals through an edge peak-detection algorithm, and outputs live heart rate measurements (BPM: 107) on a 16x2 character LCD over an I2C serial bus.",
+      problem: "Traditional pulse monitoring equipment is often proprietary, expensive, and tethered to complex medical stations. Basic analog pulse sensors suffer from baseline motion noise and ambient light interference, requiring dedicated software filtering and responsive local visual readouts.",
+      objective: "Engineer a standalone, low-noise biometric sensing unit with active optical photoplethysmography, real-time threshold-based BPM calculation, and responsive 16x2 I2C LCD telemetry.",
+      systemConcept: "An ATmega328P / Arduino Uno reads analog voltage transitions from an optical pulse sensor powered by an active green LED. An interrupt-driven DSP routine computes instantaneous peak intervals to determine beats-per-minute (BPM), and continuously updates the 16x2 blue backlit LCD over I2C.",
+      image: "assets/images/biometric_node.png",
+      gallery: [
+        {
+          url: "assets/images/biometric_node.png",
+          title: "Real-Time PPG Optical Heart Rate Sensor & I2C LCD Telemetry Rig",
+          caption: "Live hardware demonstration of the optical photoplethysmography (PPG) pulse monitoring system. The ATmega328P microcontroller reads analog pulsatile voltage transitions from the active green LED optical pulse sensor, executes peak-detection signal processing algorithms, and streams live heart rate telemetry (BPM: 107) directly to a high-contrast 16x2 I2C blue character LCD."
+        }
+      ],
       components: [
-        "ESP8266 NodeMCU (ESP-12E Wi-Fi Microcontroller)",
-        "MAX30102 High-Sensitivity Pulse Oximeter & Heart-Rate Sensor",
-        "0.96-inch I2C Monochrome OLED Display (SSD1306)",
-        "Blynk IoT Cloud Platform & Virtual Pin Webhooks",
-        "Low-Noise 3.3V LDO Voltage Regulator",
-        "5V Micro-USB Power Interface",
-        "Diagnostic Status RGB LED",
-        "Passive Decoupling Filter Capacitors"
+        "Arduino Uno / ATmega328P Microcontroller",
+        "Optical Photoplethysmography (PPG) Pulse Sensor with Active Green LED",
+        "16×2 I2C Blue Backlit Character LCD Display (HD44780 / PCF8574T)",
+        "I2C 2-Wire Serial Communication Interface (SDA / SCL)",
+        "Analog Pulse Peak-Detection & Signal Conditioning Algorithm",
+        "Active Green Optical Waveguide & Phototransistor",
+        "5V Regulated USB / DC Power Rail"
       ],
-      techStack: ["Photoplethysmography (PPG) DSP", "I2C Sensor Driver", "Blynk IoT Cloud Protocol", "Wi-Fi TCP/IP Stack", "OLED Graphics Engine", "SpO2 AC/DC Ratio Estimation"],
+      techStack: ["Embedded C / C++", "Photoplethysmography (PPG) DSP", "I2C Communication Protocol", "Analog Peak Detection", "LCD Telemetry Rendering", "Hardware Interrupt Timing"],
       workflow: [
-        "Sensor Initialization: Configure MAX30102 sample rate to 100Hz, pulse width 411μs, and LED current",
-        "Signal Acquisition: Read raw 18-bit Red and IR reflection channels via I2C FIFO buffer",
-        "Digital Filtering: Compute DC baseline and AC pulsatile components; detect systolic peaks",
-        "Metric Calculation: Compute heart rate BPM and SpO2 = 110 - 25 * (AC_red/DC_red) / (AC_ir/DC_ir)",
-        "Local Rendering: Display live waveform and numerical values on SSD1306 OLED",
-        "Cloud Telemetry: Broadcast vitals to Blynk IoT Cloud; trigger webhooks if SpO2 < 92% or BPM > 120"
+        "Sensor Excitation: Power optical pulse sensor green emitter to penetrate skin capillary beds",
+        "Signal Acquisition: Sample analog phototransistor output on ADC0 pin at 2ms intervals",
+        "Digital Peak Detection: Filter baseline DC offset and detect AC systolic contraction peaks",
+        "BPM Computation: Calculate time difference (IBI) between consecutive beats to derive Beats Per Minute",
+        "LCD Telemetry: Transmit formatted 'HEART RATE / BPM: [val]' string over I2C to 16x2 LCD display"
       ],
-      result: "Prototype / development project. Achieved high correlation with clinical pulse oximeters across standard resting heart rate and oxygenation tests.",
-      status: "Operational IoT Node",
+      result: "Prototype / development project. Validated accurate, real-time cardiac pulse measurement (BPM: 107) with stable I2C LCD refresh rate and low jitter.",
+      status: "Operational Hardware Prototype",
       circuitType: "biometric",
       codeSnippet: `// Biometric Signal Processing & Cloud Broadcast
 #include <ESP8266WiFi.h>

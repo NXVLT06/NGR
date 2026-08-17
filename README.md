@@ -13,7 +13,7 @@ A state-of-the-art engineering portfolio and interactive hardware archive for **
 - **High-Performance Architecture**: Zero-build runtime leveraging React 18, GSAP animations, Tailwind CSS, Lucide icons, and custom audio telemetry synthesis.
 - **Interactive Project Modal & Media Showcase**: Real hardware demonstration videos, multi-photo hardware galleries, circuit schematics, telemetry logs, and BOM breakdowns.
 - **11 Core Engineering Systems**:
-  1. **Project 01 — DIY USB Sim Racing Controller** (ATmega32U4, 2400 CPR Optical Encoder, Contactless Hall-Effect Pedals, 6+R Gated Shifter Matrix, 1000Hz HID).
+  1. **Project 01 — DIY USB Sim Racing Controller (with VR Integration)** (ATmega32U4, 2400 CPR Optical Encoder, Contactless Hall-Effect Pedals, 6+R Gated Shifter Matrix, 1000Hz HID, Live VR Sim Video Demo).
   2. **Project 02 — Microcontroller-Based Rocket Stage & Launch Simulator** (ATmega328P, Deterministic FSM, Dual-Stage Isolated Relay Actuation, PWM Turbine Spooling, DFPlayer Audio Sync).
   3. **Project 03 — IoT Smart Parking Management Infrastructure** [🏆 *Best Capstone Project Award*] (13.56 MHz RFID Access Gate, Multiplexed IR & Ultrasonic Bay Occupancy Arrays, Servo Actuation, Real-time Local LCD & Cloud Telemetry).
   4. **Project 04 — IoT Enabled Automated Precision Dosing System** (ESP32 / Arduino MCU, PWM MOSFET Power Switching, Non-Contact Liquid Level Telemetry, Closed-Loop Flow Feedback, Blynk IoT Cloud).

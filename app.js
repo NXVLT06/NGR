@@ -1047,6 +1047,28 @@ function ProjectCard({ project, onSelect, index = 0 }) {
           </p>
         )}
 
+        {project.hasVR && (
+          <div className="mb-4 flex items-center justify-between">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                sfx.playClick();
+                onSelect(project);
+              }}
+              className="px-3.5 py-1.5 rounded-lg bg-black text-white hover:bg-slate-800 transition-all text-xs font-mono font-bold flex items-center space-x-2 shadow-sm hover:shadow-md cursor-pointer border border-slate-700"
+              title="Play VR Sim Racing Demo Video"
+            >
+              <span className="text-sm">🥽</span>
+              <span>VR MODE</span>
+              <span className="text-[10px] text-slate-300">▶ PLAY DEMO</span>
+            </button>
+            <span className="text-[10px] font-mono text-purple-700 font-bold bg-purple-50 px-2.5 py-1 rounded-md border border-purple-200 flex items-center space-x-1">
+              <span>🥽</span>
+              <span>VR READY</span>
+            </span>
+          </div>
+        )}
+
         {project.award && (
           <div className="mb-4 px-3.5 py-2 rounded-xl bg-amber-50 border border-amber-300 text-amber-900 flex items-center justify-between text-xs font-mono font-bold shadow-xs">
             <span className="flex items-center space-x-2">
@@ -1088,7 +1110,7 @@ function ProjectCard({ project, onSelect, index = 0 }) {
               </div>
               <div className="absolute top-2 left-2 px-2.5 py-0.5 rounded-md bg-black/80 backdrop-blur-md border border-white/20 text-[9px] font-mono font-bold text-white flex items-center space-x-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-                <span>VIDEO DEMO</span>
+                <span>{project.hasVR ? "🥽 VR VIDEO DEMO" : "VIDEO DEMO"}</span>
               </div>
             </div>
           ) : project.image || (project.gallery && project.gallery.length > 0) ? (
@@ -1173,7 +1195,7 @@ function ProjectDetailModal({ project, onClose }) {
   const hasGallery = Boolean(project?.gallery && project.gallery.length > 0);
 
   const availableTabs = [
-    ...(hasVideo ? [{ id: "video", label: "01 // VIDEO DEMO 🎥" }] : []),
+    ...(hasVideo ? [{ id: "video", label: project?.hasVR ? "01 // VR & HARDWARE DEMO 🥽" : "01 // VIDEO DEMO 🎥" }] : []),
     ...(hasGallery ? [{ id: "gallery", label: hasVideo ? "02 // HARDWARE & TELEMETRY GALLERY 📸" : "01 // HARDWARE & TELEMETRY GALLERY 📸" }] : []),
     { id: "overview", label: `${hasVideo && hasGallery ? "03" : hasVideo || hasGallery ? "02" : "01"} // OVERVIEW & CONCEPT` },
     { id: "components", label: `${hasVideo && hasGallery ? "04" : hasVideo || hasGallery ? "03" : "02"} // HARDWARE & STACK` },
@@ -1253,7 +1275,7 @@ function ProjectDetailModal({ project, onClose }) {
                 <div className="flex items-center justify-between px-2 pt-1 text-xs font-mono text-white">
                   <span className="flex items-center space-x-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping" />
-                    <span className="font-bold">LIVE HARDWARE VIDEO DEMO &amp; TELEMETRY</span>
+                    <span className="font-bold">{project.hasVR ? "🥽 LIVE VR SIM RACING VIDEO DEMO & TELEMETRY" : "LIVE HARDWARE VIDEO DEMO & TELEMETRY"}</span>
                   </span>
                   <span className="text-slate-400 text-[11px]">// 1080P HD STREAM</span>
                 </div>

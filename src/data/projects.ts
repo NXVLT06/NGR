@@ -3,6 +3,8 @@ export interface Project {
   num: string;
   title: string;
   subtitle?: string;
+  hasVR?: boolean;
+  video?: string;
   category: string;
   year: string;
   abstract: string;
@@ -468,10 +470,12 @@ void loop() {
     id: "proj-08",
     num: "08",
     title: "DIY USB Sim Racing Controller",
-    subtitle: "Steering Wheel, Pedals & H-Shifter",
+    subtitle: "Steering Wheel, Pedals & H-Shifter (with VR Integration)",
+    hasVR: true,
+    video: "assets/videos/1.MP4",
     category: "Human Interface / Embedded Systems",
     year: "2024",
-    abstract: "A plug-and-play gaming peripheral operating as a native USB Human Interface Device via the ATmega32U4 controller. It reads high-precision steering inputs through an optical rotary encoder, processes throttle and braking from an analog Hall-effect foot pedal, and decodes gear selection across a gated 6+R H-pattern shifter switch matrix.",
+    abstract: "A plug-and-play gaming peripheral operating as a native USB Human Interface Device via the ATmega32U4 controller with full Virtual Reality (VR) sim racing integration. It reads high-precision steering inputs through an optical rotary encoder, processes throttle and braking from an analog Hall-effect foot pedal, and decodes gear selection across a gated 6+R H-pattern shifter switch matrix.",
     overview: "A custom-built, professional-grade sim racing peripheral unit that interfaces with modern racing simulators as a standard USB HID Game Controller without requiring proprietary software drivers.",
     problem: "Commercial direct-drive and entry-level force feedback sim gear is prohibitively expensive, while cheap off-the-shelf controllers suffer from poor potentiometer wear, deadzones, and limited 180° rotation.",
     objective: "Construct a 900° high-resolution USB steering wheel, contactless Hall-effect throttle/brake pedals, and a gated 6-speed + Reverse H-shifter powered by an ATmega32U4 USB microcontroller.",

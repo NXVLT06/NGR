@@ -1191,7 +1191,7 @@ function ProjectDetailModal({ project, initialVideoMode = "default", onClose }) 
     ...(hasGallery ? [{ id: "gallery", label: hasVideo ? "02 // HARDWARE & TELEMETRY GALLERY 📸" : "01 // HARDWARE & TELEMETRY GALLERY 📸" }] : []),
     { id: "overview", label: `${hasVideo && hasGallery ? "03" : hasVideo || hasGallery ? "02" : "01"} // OVERVIEW & CONCEPT` },
     { id: "components", label: `${hasVideo && hasGallery ? "04" : hasVideo || hasGallery ? "03" : "02"} // HARDWARE & STACK` },
-    { id: "workflow", label: `${hasVideo && hasGallery ? "05" : hasVideo || hasGallery ? "04" : "03"} // WORKFLOW & DIAGRAM` }
+    { id: "workflow", label: `${hasVideo && hasGallery ? "05" : hasVideo || hasGallery ? "04" : "03"} // EXECUTION WORKFLOW` }
   ];
 
   const defaultTab = hasVideo ? "video" : hasGallery ? "gallery" : "overview";
@@ -1570,12 +1570,9 @@ function ProjectDetailModal({ project, initialVideoMode = "default", onClose }) 
           )}
 
           {activeTab === "workflow" && (
-            <div className="space-y-6">
-              <div className="w-full h-56 rounded-xl bg-slate-50 border border-slate-300 p-2">
-                <ProjectCircuitVisual type={project.circuitType} />
-              </div>
+            <div className="space-y-4">
+              <span className="text-xs font-mono font-bold text-black uppercase block tracking-wider">// EXECUTION WORKFLOW &amp; SEQUENCE</span>
               <div className="space-y-3">
-                <span className="text-xs font-mono font-bold text-black uppercase block tracking-wider">// EXECUTION WORKFLOW</span>
                 {project.workflow.map((step, idx) => (
                   <div key={idx} className="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-start space-x-4">
                     <span className="w-7 h-7 rounded-lg bg-black text-white font-mono text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">

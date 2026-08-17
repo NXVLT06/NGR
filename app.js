@@ -482,32 +482,15 @@ function Hero() {
         <div className="md:col-span-4 reveal-left-on-scroll flex flex-col">
           <div className="hero-left-card">
             <div>
-              <div className="flex items-center justify-between mb-3 border-b border-slate-200 pb-2">
+              <div className="flex items-center justify-between mb-4 border-b border-slate-200 pb-2.5">
                 <span className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider">
                   // PROFILE OVERVIEW
                 </span>
-                <span className="text-slate-600 font-bold">
+                <span className="text-slate-700 font-bold text-xs font-mono">
                   ECE • EMBEDDED &amp; IOT
                 </span>
               </div>
-              <h4 className="font-space font-extrabold text-lg text-black mb-3">
-                CORE TECHNICAL COMPETENCIES
-              </h4>
-              <ul className="space-y-2 text-xs font-mono text-slate-800">
-                <li className="flex items-center space-x-2.5">
-                  <span className="w-4 h-4 rounded-full bg-black text-white flex items-center justify-center font-bold text-[9px]">✦</span>
-                  <span>Embedded C / C++ &amp; FreeRTOS</span>
-                </li>
-                <li className="flex items-center space-x-2.5">
-                  <span className="w-4 h-4 rounded-full bg-black text-white flex items-center justify-center font-bold text-[9px]">✦</span>
-                  <span>Long-Range LoRa &amp; IoT Telemetry</span>
-                </li>
-                <li className="flex items-center space-x-2.5">
-                  <span className="w-4 h-4 rounded-full bg-black text-white flex items-center justify-center font-bold text-[9px]">✦</span>
-                  <span>Firmware &amp; Logic Synthesis</span>
-                </li>
-              </ul>
-              <h2 className="font-space font-extrabold text-xl sm:text-2xl text-black mb-1.5 leading-tight">
+              <h2 className="font-space font-extrabold text-2xl text-black mb-1.5 leading-tight">
                 HELLO! I'M GOKULRAJ NATARAJAN
               </h2>
               <p className="text-xs font-mono font-bold text-slate-600 uppercase tracking-wider mb-5">
@@ -517,19 +500,19 @@ function Hero() {
               <ul className="space-y-3 text-xs sm:text-sm font-sans text-slate-800 font-medium">
                 <li className="flex items-center space-x-2.5">
                   <span className="w-4 h-4 rounded-full bg-black text-white flex items-center justify-center font-bold text-[9px]">✦</span>
-                  <span>Embedded Firmware (C/C++)</span>
+                  <span>Embedded Firmware Development (C/C++)</span>
                 </li>
                 <li className="flex items-center space-x-2.5">
                   <span className="w-4 h-4 rounded-full bg-black text-white flex items-center justify-center font-bold text-[9px]">✦</span>
-                  <span>IoT &amp; Wireless Telemetry (LoRa/GSM)</span>
+                  <span>IoT &amp; Wireless Telemetry (LoRa / GSM / ESP32)</span>
                 </li>
                 <li className="flex items-center space-x-2.5">
                   <span className="w-4 h-4 rounded-full bg-black text-white flex items-center justify-center font-bold text-[9px]">✦</span>
-                  <span>AI / ML &amp; Signal Processing</span>
+                  <span>Real-Time Sensor DSP &amp; Hardware Telemetry</span>
                 </li>
                 <li className="flex items-center space-x-2.5">
                   <span className="w-4 h-4 rounded-full bg-black text-white flex items-center justify-center font-bold text-[9px]">✦</span>
-                  <span>Circuit Design &amp; Prototyping</span>
+                  <span>PCB Layout, Circuit Design &amp; Prototyping</span>
                 </li>
               </ul>
             </div>

@@ -1,0 +1,131 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.65in]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+
+% Define Accent Colors
+\definecolor{primary}{RGB}{14, 116, 144}     % Deep Cyan
+\definecolor{secondary}{RGB}{71, 85, 105}   % Slate Gray
+\definecolor{dark}{RGB}{15, 23, 42}         % Charcoal Dark
+
+% Section Formatting with subtle rule
+\titleformat{\section}
+  {\large\bfseries\color{primary}\uppercase}
+  {}{0em}{}
+  [{\color{primary}\titlerule[0.8pt]}]
+\titlespacing{\section}{0pt}{8pt}{4pt}
+
+% Custom list format
+\setlist[itemize]{leftmargin=*, noitemsep, topsep=2pt, parsep=1pt}
+
+% Hyperlink configuration
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    urlcolor=primary,
+    pdftitle={Gokulraj Natarajan - Resume},
+    pdfauthor={Gokulraj Natarajan}
+}
+
+\begin{document}
+\pagestyle{empty}
+
+% HEADER
+\begin{center}
+    {\LARGE \textbf{\color{dark} GOKULRAJ NATARAJAN}} \\[4pt]
+    \small
+    {\color{secondary}
+        \faMapMarker* Chennai, Tamil Nadu, India \hspace{6pt}$|$\hspace{6pt}
+        \faPhone* +91 93455 15852 \hspace{6pt}$|$\hspace{6pt}
+        \faEnvelope \hspace{2pt} \href{mailto:gokulnatraj06@gmail.com}{gokulnatraj06@gmail.com}
+    } \\[3pt]
+    \small
+    \href{https://www.linkedin.com/in/gokulraj-natarajan-41a2ba36b}{\faLinkedin \hspace{2pt} LinkedIn: gokulraj-natarajan} \hspace{8pt}$|$\hspace{8pt}
+    \href{https://github.com/NXVLT06/Hardware-Projects.git}{\faGithub \hspace{2pt} GitHub: NXVLT06/Hardware-Projects}
+\end{center}
+
+\vspace{-4pt}
+
+% PROFESSIONAL SUMMARY
+\section{Summary}
+\noindent
+Forward-thinking Electronics and Communication Engineering undergraduate at \textbf{SIMATS University} with hands-on expertise in embedded systems, IoT architectures, and rapid hardware prototyping. Proven track record in designing autonomous sensor networks, failsafe firmware in Embedded C/C++, and winning capstone project awards. Passionate about building robust edge-computing solutions, smart automation, and connected hardware.
+
+% TECHNICAL SKILLS
+\section{Technical Skills}
+\begin{itemize}
+    \item \textbf{Hardware \& Embedded Systems:} ESP32, ESP8266, Arduino (Uno/Nano/Mega), Raspberry Pi, STM32 basics, Circuit Design, PCB Prototyping, Power Switching \& Relay Circuits.
+    \item \textbf{Sensors \& Modules:} MPU6050 (6-Axis IMU), GPS (NEO-6M), GSM (SIM800L), TDS/Water Quality, Ultrasonic (HC-SR04), IR Arrays, LDR, Bluetooth (HC-05/BLE).
+    \item \textbf{Programming Languages:} Embedded C, C, C++, Python 3, Shell Scripting basics.
+    \item \textbf{Protocols \& IoT Platforms:} I2C, SPI, UART, PWM, Wi-Fi, HTTP/MQTT, Blynk IoT Cloud, Bluetooth Serial.
+    \item \textbf{Software \& Tools:} Arduino IDE, VS Code, Git, GitHub, IBM SPSS (Data Analysis), Proteus/EasyEDA simulation.
+    \item \textbf{Core Competencies:} Sensor Calibration, Digital Filtering, Anti-Bounce State-Lock Algorithms, Failsafe Architecture, Real-Time Hardware Telemetry.
+\end{itemize}
+
+% EDUCATION
+\section{Education}
+\noindent
+\textbf{Bachelor of Engineering in Electronics and Communication Engineering (B.E. ECE)} \hfill \textbf{Expected 2029} \\
+SIMATS University, Chennai, Tamil Nadu \hfill \textit{Specialization: Embedded Systems \& IoT}
+
+% KEY PROJECTS
+\section{Featured Hardware \& IoT Projects}
+
+\noindent
+\textbf{IoT Enabled Automated Precision Dosing System} \hfill \textbf{2026} \\
+\textit{Microcontroller, PWM Switching, Liquid Telemetry, Blynk Cloud}
+\begin{itemize}
+    \item Engineered an automated closed-loop fluid dosing platform integrating microcontrollers and power-switching circuits to regulate chemical reagent injection with $\pm1.5\%$ precision.
+    \item Developed remote monitoring telemetry for real-time stroke-rate modulation, tank level tracking, and automated emergency shut-off thresholds.
+\end{itemize}
+
+\vspace{3pt}
+\noindent
+\textbf{IoT Based Smart Parking Management Infrastructure} \hfill \textbf{2025} \\
+\textit{Microcontroller, Multiplexed IR \& Ultrasonic Arrays, Real-time Slot Telemetry} \hfill \textbf{\color{primary}[Awarded: Best Capstone Project]}
+\begin{itemize}
+    \item Architected a scalable smart parking system utilizing sensor grids for sub-second bay occupancy detection, reducing parking search latency by $40\%$.
+    \item Awarded \textbf{Best Capstone Project} for superior circuit layout, energy-efficient idle standby, and end-to-end prototype reliability.
+\end{itemize}
+
+\vspace{3pt}
+\noindent
+\textbf{IoT Based Elder Guard \& Fall Detection System} \hfill \textbf{2026} \\
+\textit{ESP32/Arduino, MPU6050 6-DOF IMU, NEO-6M GPS, SIM800L GSM}
+\begin{itemize}
+    \item Built a wearable emergency safety tracker integrating 6-axis accelerometer/gyroscope with GPS geofencing and instant cellular alert dispatch.
+    \item Implemented dynamic jerk-threshold math filters achieving $>95\%$ fall classification accuracy, coupled with a novel phone-ring handshake mechanism to cancel false triggers.
+\end{itemize}
+
+\vspace{3pt}
+\noindent
+\textbf{Smart Classroom Occupancy \& Energy Automation} \hfill \textbf{2026} \\
+\textit{Bidirectional IR Gate Arrays, LDR Photocell, Bluetooth Module, Power Relays}
+\begin{itemize}
+    \item Built an automated room monitoring node using directional IR sensors with custom state-lock debounce algorithms to eliminate sensor bounce during crowded transits.
+    \item Automated lighting and ventilation control based on real-time headcount telemetry, yielding estimated $30\%$ idle energy savings.
+\end{itemize}
+
+\vspace{3pt}
+\noindent
+\textbf{Custom Automotive Steering Wheel \& Controller Interface} \hfill \textbf{2026} \\
+\textit{Rotary Encoders, Multi-Input Matrix, Low-Latency Serial HID Interface}
+\begin{itemize}
+    \item Designed an ergonomic, modular steering controller with custom tactile inputs and interrupt-driven firmware for ultra-low latency ($<5\text{ms}$) in simulation and telemetry tracking.
+\end{itemize}
+
+% CERTIFICATIONS & ACHIEVEMENTS
+\section{Certifications \& Honors}
+\begin{itemize}
+    \item \textbf{NPTEL:} Internet of Things (IoT) Certification -- In-depth protocols, cloud integration, and sensor networks.
+    \item \textbf{Cisco Networking Academy:} Compliance review and Computer Networking Fundamentals certification.
+    \item \textbf{The Bharat Scouts and Guides:} Certified for Leadership, Discipline, and Team Collaboration.
+    \item \textbf{Award of Excellence:} Winner of \textbf{Best Capstone Project} for IoT Smart Parking System (2025).
+\end{itemize}
+
+\end{document}

@@ -1016,8 +1016,8 @@ function ProjectCard({ project, onSelect, index = 0 }) {
   return (
     <div
       onClick={() => {
-        sfx.playModal();
-        onSelect(project);
+        sfx.playClick();
+        onSelect(project, "default");
       }}
       onMouseEnter={() => sfx.playHover()}
       className="group relative rounded-2xl bg-white border border-slate-200 hover:border-black transition-all duration-300 overflow-hidden flex flex-col justify-between p-6 sm:p-8 hover:shadow-xl cursor-pointer"
@@ -1053,14 +1053,14 @@ function ProjectCard({ project, onSelect, index = 0 }) {
               onClick={(e) => {
                 e.stopPropagation();
                 sfx.playClick();
-                onSelect(project);
+                onSelect(project, "vr");
               }}
-              className="px-3.5 py-1.5 rounded-lg bg-black text-white hover:bg-slate-800 transition-all text-xs font-mono font-bold flex items-center space-x-2 shadow-sm hover:shadow-md cursor-pointer border border-slate-700"
+              className="px-3.5 py-1.5 rounded-lg bg-purple-700 text-white hover:bg-purple-800 transition-all text-xs font-mono font-bold flex items-center space-x-2 shadow-sm hover:shadow-md cursor-pointer border border-purple-500"
               title="Play VR Sim Racing Demo Video"
             >
               <span className="text-sm">🥽</span>
               <span>VR MODE</span>
-              <span className="text-[10px] text-slate-300">▶ PLAY DEMO</span>
+              <span className="text-[10px] text-purple-200">▶ PLAY VR</span>
             </button>
             <span className="text-[10px] font-mono text-purple-700 font-bold bg-purple-50 px-2.5 py-1 rounded-md border border-purple-200 flex items-center space-x-1">
               <span>🥽</span>
@@ -1090,7 +1090,7 @@ function ProjectCard({ project, onSelect, index = 0 }) {
           {project.video ? (
             <div className="relative w-full h-full group/video flex items-center justify-center">
               <video
-                src={project.video}
+                src={project.defaultVideo || project.video}
                 poster={project.poster}
                 preload="metadata"
                 muted
@@ -1110,7 +1110,7 @@ function ProjectCard({ project, onSelect, index = 0 }) {
               </div>
               <div className="absolute top-2 left-2 px-2.5 py-0.5 rounded-md bg-black/80 backdrop-blur-md border border-white/20 text-[9px] font-mono font-bold text-white flex items-center space-x-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-                <span>{project.hasVR ? "🥽 VR VIDEO DEMO" : "VIDEO DEMO"}</span>
+                <span>VIDEO DEMO</span>
               </div>
             </div>
           ) : project.image || (project.gallery && project.gallery.length > 0) ? (
@@ -1190,12 +1190,21 @@ function ProjectCard({ project, onSelect, index = 0 }) {
 // ==========================================
 // 10. PROJECT DETAIL MODAL
 // ==========================================
-function ProjectDetailModal({ project, onClose }) {
-  const hasVideo = Boolean(project?.video);
+function ProjectDetailModal({ project, initialVideoMode = "default", onClose }) {
+  const hasVideo = Boolean(project?.video || project?.defaultVideo || project?.vrVideo);
   const hasGallery = Boolean(project?.gallery && project.gallery.length > 0);
+  const [selectedVideoMode, setSelectedVideoMode] = useState(initialVideoMode || "default");
+
+  useEffect(() => {
+    setSelectedVideoMode(initialVideoMode || "default");
+  }, [project, initialVideoMode]);
+
+  const activeVideoUrl = (selectedVideoMode === "vr" && project?.vrVideo)
+    ? project.vrVideo
+    : project?.defaultVideo || project?.video;
 
   const availableTabs = [
-    ...(hasVideo ? [{ id: "video", label: project?.hasVR ? "01 // VR & HARDWARE DEMO 🥽" : "01 // VIDEO DEMO 🎥" }] : []),
+    ...(hasVideo ? [{ id: "video", label: project?.hasVR ? "01 // VIDEO DEMOS (RIG & VR) 🎥" : "01 // VIDEO DEMO 🎥" }] : []),
     ...(hasGallery ? [{ id: "gallery", label: hasVideo ? "02 // HARDWARE & TELEMETRY GALLERY 📸" : "01 // HARDWARE & TELEMETRY GALLERY 📸" }] : []),
     { id: "overview", label: `${hasVideo && hasGallery ? "03" : hasVideo || hasGallery ? "02" : "01"} // OVERVIEW & CONCEPT` },
     { id: "components", label: `${hasVideo && hasGallery ? "04" : hasVideo || hasGallery ? "03" : "02"} // HARDWARE & STACK` },
@@ -1269,19 +1278,63 @@ function ProjectDetailModal({ project, onClose }) {
         {/* Content Body based on selected Task Bar Tab */}
         <div className="p-6 sm:p-8 overflow-y-auto space-y-8 flex-1">
           {/* TAB: VIDEO DEMO */}
-          {activeTab === "video" && project.video && (
+          {activeTab === "video" && activeVideoUrl && (
             <div className="space-y-6">
+              {/* Dual Video Stream Switcher for Project 1 */}
+              {project.hasVR && project.vrVideo && project.defaultVideo && (
+                <div className="flex flex-wrap items-center justify-between p-3.5 rounded-xl bg-slate-100 border border-slate-300 gap-3">
+                  <div className="flex items-center space-x-2">
+                    <span className="text-xs font-mono font-bold text-slate-700 uppercase">// SELECT DEMO STREAM:</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={() => {
+                        sfx.playClick();
+                        setSelectedVideoMode("default");
+                      }}
+                      className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-bold flex items-center space-x-1.5 transition-all cursor-pointer ${
+                        selectedVideoMode === "default"
+                          ? "bg-black text-white shadow-md"
+                          : "bg-white text-slate-700 border border-slate-300 hover:border-black"
+                      }`}
+                    >
+                      <span>📹</span>
+                      <span>HARDWARE RIG DEMO</span>
+                    </button>
+                    <button
+                      onClick={() => {
+                        sfx.playClick();
+                        setSelectedVideoMode("vr");
+                      }}
+                      className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-bold flex items-center space-x-1.5 transition-all cursor-pointer ${
+                        selectedVideoMode === "vr"
+                          ? "bg-purple-700 text-white shadow-md ring-2 ring-purple-400"
+                          : "bg-purple-50 text-purple-900 border border-purple-300 hover:bg-purple-100"
+                      }`}
+                    >
+                      <span>🥽</span>
+                      <span>VR SIMULATION DEMO</span>
+                    </button>
+                  </div>
+                </div>
+              )}
+
               <div className="rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 shadow-xl space-y-3 p-3 sm:p-4">
                 <div className="flex items-center justify-between px-2 pt-1 text-xs font-mono text-white">
                   <span className="flex items-center space-x-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping" />
-                    <span className="font-bold">{project.hasVR ? "🥽 LIVE VR SIM RACING VIDEO DEMO & TELEMETRY" : "LIVE HARDWARE VIDEO DEMO & TELEMETRY"}</span>
+                    <span className="font-bold">
+                      {selectedVideoMode === "vr"
+                        ? "🥽 LIVE VIRTUAL REALITY (VR) RACING SIMULATION DEMO"
+                        : "📹 LIVE HARDWARE STEERING & SHIFTER RIG DEMO"}
+                    </span>
                   </span>
                   <span className="text-slate-400 text-[11px]">// 1080P HD STREAM</span>
                 </div>
                 <div className="w-full rounded-xl overflow-hidden bg-black flex items-center justify-center max-h-[460px] shadow-2xl border border-slate-800">
                   <video
-                    src={project.video}
+                    key={activeVideoUrl}
+                    src={activeVideoUrl}
                     poster={project.poster}
                     controls
                     autoPlay
@@ -1294,16 +1347,18 @@ function ProjectDetailModal({ project, onClose }) {
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs font-mono">
-                  <span className="text-slate-500 block">RECORDING TYPE:</span>
-                  <span className="text-black font-bold text-sm">Real Physical Hardware</span>
+                  <span className="text-slate-500 block">CURRENT VIEW:</span>
+                  <span className="text-black font-bold text-sm">
+                    {selectedVideoMode === "vr" ? "VR Cockpit Simulation (1.MP4)" : "Physical Hardware Rig (Steering)"}
+                  </span>
                 </div>
                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs font-mono">
                   <span className="text-slate-500 block">SYSTEM STATUS:</span>
-                  <span className="text-emerald-600 font-bold text-sm">Active Demonstration</span>
+                  <span className="text-emerald-600 font-bold text-sm">Active Stream</span>
                 </div>
                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs font-mono">
-                  <span className="text-slate-500 block">HARDWARE MODULES:</span>
-                  <span className="text-black font-bold text-sm">{project.components.length} Verified Components</span>
+                  <span className="text-slate-500 block">INPUT PROTOCOL:</span>
+                  <span className="text-black font-bold text-sm">1000Hz HID USB</span>
                 </div>
               </div>
             </div>
@@ -1871,6 +1926,7 @@ function Footer() {
 // ==========================================
 function App() {
   const [selectedProject, setSelectedProject] = useState(null);
+  const [initialVideoMode, setInitialVideoMode] = useState("default");
 
   // Global Intersection Observer for Scroll Animations
   useEffect(() => {
@@ -1908,7 +1964,10 @@ function App() {
         <TechMarquee />
         <About />
         <EngineeringDomains />
-        <ProjectsSection onSelectProject={(p) => setSelectedProject(p)} />
+        <ProjectsSection onSelectProject={(p, mode = "default") => {
+          setSelectedProject(p);
+          setInitialVideoMode(mode);
+        }} />
         <Journey />
         <Contact />
       </main>
@@ -1918,7 +1977,11 @@ function App() {
       {selectedProject && (
         <ProjectDetailModal
           project={selectedProject}
-          onClose={() => setSelectedProject(null)}
+          initialVideoMode={initialVideoMode}
+          onClose={() => {
+            setSelectedProject(null);
+            setInitialVideoMode("default");
+          }}
         />
       )}
     </div>

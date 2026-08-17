@@ -5,6 +5,8 @@ export interface Project {
   subtitle?: string;
   hasVR?: boolean;
   video?: string;
+  defaultVideo?: string;
+  vrVideo?: string;
   category: string;
   year: string;
   abstract: string;
@@ -472,7 +474,9 @@ void loop() {
     title: "DIY USB Sim Racing Controller",
     subtitle: "Steering Wheel, Pedals & H-Shifter (with VR Integration)",
     hasVR: true,
-    video: "assets/videos/1.MP4",
+    video: "assets/videos/Steering (2).MP4",
+    defaultVideo: "assets/videos/Steering (2).MP4",
+    vrVideo: "assets/videos/1.MP4",
     category: "Human Interface / Embedded Systems",
     year: "2024",
     abstract: "A plug-and-play gaming peripheral operating as a native USB Human Interface Device via the ATmega32U4 controller with full Virtual Reality (VR) sim racing integration. It reads high-precision steering inputs through an optical rotary encoder, processes throttle and braking from an analog Hall-effect foot pedal, and decodes gear selection across a gated 6+R H-pattern shifter switch matrix.",

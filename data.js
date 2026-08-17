@@ -38,7 +38,9 @@ window.PORTFOLIO_DATA = {
       ],
       result: "Prototype / development project. Delivered 900° steering precision with 1000Hz USB polling rate, verified VR cockpit responsiveness, and zero contact wear on pedals.",
       status: "Fully Built & Calibrated",
-      video: "assets/videos/1.MP4",
+      video: "assets/videos/Steering (2).MP4",
+      defaultVideo: "assets/videos/Steering (2).MP4",
+      vrVideo: "assets/videos/1.MP4",
       circuitType: "hid",
       codeSnippet: `// USB HID Sim Controller Firmware
 #include <Joystick.h>

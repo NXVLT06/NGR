@@ -12,7 +12,7 @@ A state-of-the-art engineering portfolio and interactive hardware archive for **
 
 - **High-Performance Architecture**: Zero-build runtime leveraging React 18, GSAP animations, Tailwind CSS, Lucide icons, and custom audio telemetry synthesis.
 - **Interactive Project Modal & Media Showcase**: Real hardware demonstration videos, multi-photo hardware galleries, circuit schematics, telemetry logs, and BOM breakdowns.
-- **10 Core Engineering Systems**:
+- **11 Core Engineering Systems**:
   1. **Project 01 — DIY USB Sim Racing Controller** (ATmega32U4, 2400 CPR Optical Encoder, Contactless Hall-Effect Pedals, 6+R Gated Shifter Matrix, 1000Hz HID).
   2. **Project 02 — Microcontroller-Based Rocket Stage & Launch Simulator** (ATmega328P, Deterministic FSM, Dual-Stage Isolated Relay Actuation, PWM Turbine Spooling, DFPlayer Audio Sync).
   3. **Project 03 — IoT Smart Parking Management Infrastructure** [🏆 *Best Capstone Project Award*] (13.56 MHz RFID Access Gate, Multiplexed IR & Ultrasonic Bay Occupancy Arrays, Servo Actuation, Real-time Local LCD & Cloud Telemetry).
@@ -23,8 +23,8 @@ A state-of-the-art engineering portfolio and interactive hardware archive for **
   8. **Project 08 — Automated Headlight Dipper (Anti-Glare Adaptive Beam)** (Optical Collimator Sensor Tube, LM358 Precision Schmitt Trigger with Hysteresis, 30A Automotive Switching Relays, Flash Blindness Elimination).
   9. **Project 09 — Discrete Traffic Light Control System** (Non-Programmable Hardware Logic, NE555 Astable Multivibrator Clock, CD4017 CMOS Decade Counter, Diode OR Matrix & BC547 Transistor Stages).
   10. **Project 10 — Remote Biometric Telemetry Node** (ESP8266 NodeMCU, MAX30102 Photoplethysmography Pulse Oximeter, AC/DC Peak Detection DSP, SSD1306 Waveform OLED, Blynk Cloud Alert Webhooks).
+  11. **Project 11 — IoT-Based Smart Classroom Monitoring System** (ESP32 Microcontroller, Sequenced Dual-IR Beam Entry/Exit Visitor Counter, LDR Ambient Light Sensing, 5V Opto-Isolated Relays for Lighting & 12V Fan Actuation, Mobile IIoT Dashboard Control).
 
-- **Interactive DSP Research Lab**: Real-time canvas oscilloscope with configurable sine/square signals, Gaussian noise injection, low-pass filter simulation, and live derivative ($dI/dt$) overlays.
 - **Academic & Industry Milestones**: Career timeline covering embedded prototypes, Best Capstone Project Award, Cisco Networking Academy certification (Verified Badge, Course Certificate & 5 Module Achievements), NPTEL IoT, and hardware deployments.
 
 ---

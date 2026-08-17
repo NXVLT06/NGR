@@ -23,12 +23,12 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
               SELECTED <span className="text-gradient-cyan">PROJECTS</span>
             </h2>
             <p className="text-slate-400 font-sans text-base sm:text-lg mt-3 font-light max-w-xl">
-              "Hardware, software and research systems built through experimentation."
+              "Hardware, embedded firmware and IoT systems built through experimentation."
             </p>
           </div>
           <div className="text-xs font-mono text-slate-400 bg-white/5 border border-white/10 px-4 py-2 rounded-lg flex items-center space-x-2 self-start md:self-auto">
             <span className="w-2 h-2 rounded-full bg-[#00f0ff]" />
-            <span>SHOWING {showAll ? "10 OF 10" : "5 OF 10"} ARCHIVED PROJECTS</span>
+            <span>SHOWING {showAll ? "11 OF 11" : "5 OF 11"} ARCHIVED PROJECTS</span>
           </div>
         </div>
 

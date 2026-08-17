@@ -25,10 +25,10 @@ export const About: React.FC = () => {
 
             <div className="space-y-6 text-slate-300 font-sans text-base sm:text-lg leading-relaxed font-light">
               <p className="border-l-2 border-[#00f0ff]/50 pl-5 text-white/95">
-                "I am Gokul Natraj, an electronics and technology enthusiast focused on embedded systems, IoT, intelligent hardware, artificial intelligence, machine learning and experimental engineering."
+                "I am Gokulraj Natarajan, an electronics and technology enthusiast focused on embedded systems, IoT, microcontroller firmware, hardware prototyping and experimental engineering."
               </p>
               <p className="text-slate-400">
-                "I enjoy transforming technical concepts into working prototypes — combining electronics, microcontrollers, sensors, software and intelligent algorithms to create practical systems."
+                "I enjoy transforming technical concepts into working prototypes — combining electronics, microcontrollers, sensors, and robust firmware to create practical systems."
               </p>
             </div>
           </div>

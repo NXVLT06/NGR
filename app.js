@@ -254,9 +254,8 @@ function Navbar() {
     { label: "ABOUT", short: "02", icon: "✦", href: "#about", id: "about" },
     { label: "DOMAINS", short: "03", icon: "▦", href: "#domains", id: "domains" },
     { label: "PROJECTS", short: "04", icon: "◫", href: "#projects", id: "projects" },
-    { label: "RESEARCH", short: "05", icon: "∿", href: "#research", id: "research" },
-    { label: "JOURNEY", short: "06", icon: "⏳", href: "#journey", id: "journey" },
-    { label: "CONTACT", short: "07", icon: "✉", href: "#contact", id: "contact" }
+    { label: "JOURNEY", short: "05", icon: "⏳", href: "#journey", id: "journey" },
+    { label: "CONTACT", short: "06", icon: "✉", href: "#contact", id: "contact" }
   ];
 
   useEffect(() => {
@@ -487,11 +486,27 @@ function Hero() {
                 <span className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider">
                   // PROFILE OVERVIEW
                 </span>
-                <span className="text-[10px] font-mono font-bold text-black bg-slate-100 px-2 py-0.5 rounded">
-                  ECE • RESEARCH
+                <span className="text-slate-600 font-bold">
+                  ECE • EMBEDDED &amp; IOT
                 </span>
               </div>
-
+              <h4 className="font-space font-extrabold text-lg text-black mb-3">
+                CORE TECHNICAL COMPETENCIES
+              </h4>
+              <ul className="space-y-2 text-xs font-mono text-slate-800">
+                <li className="flex items-center space-x-2.5">
+                  <span className="w-4 h-4 rounded-full bg-black text-white flex items-center justify-center font-bold text-[9px]">✦</span>
+                  <span>Embedded C / C++ &amp; FreeRTOS</span>
+                </li>
+                <li className="flex items-center space-x-2.5">
+                  <span className="w-4 h-4 rounded-full bg-black text-white flex items-center justify-center font-bold text-[9px]">✦</span>
+                  <span>Long-Range LoRa &amp; IoT Telemetry</span>
+                </li>
+                <li className="flex items-center space-x-2.5">
+                  <span className="w-4 h-4 rounded-full bg-black text-white flex items-center justify-center font-bold text-[9px]">✦</span>
+                  <span>Firmware &amp; Logic Synthesis</span>
+                </li>
+              </ul>
               <h2 className="font-space font-extrabold text-xl sm:text-2xl text-black mb-1.5 leading-tight">
                 HELLO! I'M GOKULRAJ NATARAJAN
               </h2>
@@ -587,13 +602,13 @@ function Hero() {
             </a>
 
             <a
-              href="#research"
+              href="#journey"
               onClick={() => sfx.playClick()}
               onMouseEnter={() => sfx.playHover()}
               className="px-5 py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-300 text-black transition-all duration-300 font-space font-bold text-xs sm:text-sm tracking-wider flex items-center space-x-1.5"
             >
-              <span>RESEARCH</span>
-              <span>∿</span>
+              <span>JOURNEY</span>
+              <span>⏳</span>
             </a>
           </div>
         </div>
@@ -715,7 +730,7 @@ function Hero() {
 function TechMarquee() {
   const row1 = [
     "ESP32", "Arduino", "Embedded C", "C++", "Python", "IoT", 
-    "Machine Learning", "AI", "LoRa", "Sensors", "Signal Processing"
+    "FreeRTOS", "PCB Design", "LoRa", "Sensors", "Signal Processing"
   ];
   const row2 = [
     "MATLAB", "NumPy", "SciPy", "FreeRTOS", "SPI / I2C", 
@@ -792,7 +807,7 @@ function About() {
 
             <div className="space-y-5 text-slate-700 font-sans text-base sm:text-lg leading-relaxed">
               <p className="border-l-3 border-black pl-5 text-black font-medium">
-                "I am Gokulraj Natarajan, an electronics and technology enthusiast focused on embedded systems, IoT, intelligent hardware, artificial intelligence, machine learning and experimental engineering."
+                "I am Gokulraj Natarajan, an electronics and technology enthusiast focused on embedded systems, IoT, microcontroller firmware, hardware prototyping and experimental engineering."
               </p>
               <p className="text-slate-600">
                 "I enjoy transforming technical concepts into working prototypes — combining electronics, microcontrollers, sensors, software and intelligent algorithms to create practical systems."
@@ -872,7 +887,7 @@ function EngineeringDomains() {
             TECHNICAL <span>DOMAINS</span>
           </h2>
           <p className="text-slate-600 font-sans text-base sm:text-lg mt-3 max-w-2xl">
-            Specialized engineering disciplines spanning hardware design, firmware development, and intelligent computational models.
+            Specialized engineering disciplines spanning hardware design, firmware development, and connected embedded systems.
           </p>
         </div>
 
@@ -1559,12 +1574,12 @@ function ProjectsSection({ onSelectProject }) {
               SELECTED <span>PROJECTS</span>
             </h2>
             <p className="text-slate-600 font-sans text-base sm:text-lg mt-3 max-w-xl">
-              "Hardware, software and research systems built through experimentation."
+              "Hardware, embedded firmware and IoT systems built through experimentation."
             </p>
           </div>
           <div className="text-xs font-mono font-bold text-black bg-slate-100 border border-slate-300 px-4 py-2 rounded-lg flex items-center space-x-2 self-start md:self-auto">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span>SHOWING {showAll ? "10 OF 10" : "5 OF 10"} ARCHIVED PROJECTS</span>
+            <span>SHOWING {displayedProjects.length} OF {allProjects.length} ARCHIVED SYSTEMS</span>
           </div>
         </div>
 
@@ -1601,7 +1616,7 @@ function ProjectsSection({ onSelectProject }) {
                 {showAll ? "SHOW LESS" : "VIEW MORE PROJECTS"}
               </span>
               <span className="text-[10px] font-mono text-slate-500 font-semibold">
-                {showAll ? "COLLAPSE ARCHIVE ↑" : "REVEAL PROJECTS 06–10 ↓"}
+                {showAll ? "COLLAPSE ARCHIVE ↑" : `REVEAL PROJECTS 06–${allProjects.length} ↓`}
               </span>
             </div>
 
@@ -1616,228 +1631,7 @@ function ProjectsSection({ onSelectProject }) {
 }
 
 // ==========================================
-// 12. RESEARCH LAB SECTION
-// ==========================================
-function ResearchLab() {
-  const topics = useMemo(() => window.PORTFOLIO_DATA?.researchTopics || [], []);
-  const [selectedTopic, setSelectedTopic] = useState(topics[0] || null);
-  const [frequency, setFrequency] = useState(1.5);
-  const [noiseLevel, setNoiseLevel] = useState(0.2);
-  const [showDerivative, setShowDerivative] = useState(true);
-  const canvasRef = useRef(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    let animationId;
-    let time = 0;
-
-    const render = () => {
-      const w = (canvas.width = canvas.parentElement.clientWidth);
-      const h = (canvas.height = 200);
-
-      ctx.clearRect(0, 0, w, h);
-
-      ctx.strokeStyle = 'rgba(0, 0, 0, 0.08)';
-      ctx.lineWidth = 1;
-      for (let x = 0; x < w; x += 40) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, h);
-        ctx.stroke();
-      }
-      for (let y = 0; y < h; y += 30) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(w, y);
-        ctx.stroke();
-      }
-
-      ctx.strokeStyle = 'rgba(0, 0, 0, 0.2)';
-      ctx.beginPath();
-      ctx.moveTo(0, h / 2);
-      ctx.lineTo(w, h / 2);
-      ctx.stroke();
-
-      ctx.beginPath();
-      ctx.strokeStyle = '#0284c7';
-      ctx.lineWidth = 2.5;
-
-      for (let x = 0; x < w; x++) {
-        const t = (x * 0.02) + time;
-        const mainWave = Math.sin(t * frequency) * 45;
-        const harmonic = Math.sin(t * frequency * 2.8) * 15;
-        const noise = (Math.random() - 0.5) * 30 * noiseLevel;
-        const spike = Math.sin(t * 0.2) > 0.95 ? Math.sin(t * 12) * 55 : 0;
-        
-        const y = h / 2 + mainWave + harmonic + noise + spike;
-        if (x === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
-      }
-      ctx.stroke();
-
-      if (showDerivative) {
-        ctx.beginPath();
-        ctx.strokeStyle = '#000000';
-        ctx.lineWidth = 2;
-        ctx.setLineDash([4, 2]);
-
-        for (let x = 0; x < w; x++) {
-          const t = (x * 0.02) + time;
-          const deriv = Math.cos(t * frequency) * frequency * 35;
-          const yDeriv = h / 2 + deriv;
-          if (x === 0) ctx.moveTo(x, yDeriv);
-          else ctx.lineTo(x, yDeriv);
-        }
-        ctx.stroke();
-        ctx.setLineDash([]);
-      }
-
-      time += 0.035;
-      animationId = requestAnimationFrame(render);
-    };
-
-    render();
-
-    return () => cancelAnimationFrame(animationId);
-  }, [frequency, noiseLevel, showDerivative]);
-
-  return (
-    <section id="research" className="py-28 px-6 md:px-12 relative bg-slate-50 border-t border-slate-200">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex items-center space-x-3 mb-6 reveal-left-on-scroll">
-          <span className="text-xs font-mono font-bold text-black tracking-widest uppercase">// 04 • COMPUTATIONAL RESEARCH</span>
-          <div className="h-[1px] flex-1 bg-slate-200" />
-        </div>
-
-        <div className="mb-16 reveal-on-scroll">
-          <h2 className="font-space font-extrabold text-4xl sm:text-5xl md:text-6xl text-black tracking-tight leading-[1.05]">
-            RESEARCH <span>LAB</span>
-          </h2>
-          <p className="text-slate-600 font-sans text-base sm:text-lg mt-3 max-w-2xl">
-            Mathematical modeling, bio-signal decoding, derivative gradient DSP, and machine learning models for real-time edge hardware.
-          </p>
-        </div>
-
-        <div className="mb-16 p-6 sm:p-8 rounded-2xl bg-white border border-slate-300 shadow-sm relative overflow-hidden reveal-scale-on-scroll">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-200 mb-6 gap-4">
-            <div>
-              <span className="text-xs font-mono font-bold text-black uppercase block">// REAL-TIME DSP OSCILLOSCOPE HARNESS</span>
-              <h3 className="font-space font-bold text-lg text-black">Continuous Stream &amp; Rate-of-Change (dI/dt) Visualizer</h3>
-            </div>
-            <div className="flex items-center space-x-4 text-xs font-mono text-slate-700">
-              <label className="flex items-center space-x-2">
-                <span>FREQ:</span>
-                <input
-                  type="range"
-                  min="0.5"
-                  max="4.0"
-                  step="0.1"
-                  value={frequency}
-                  onChange={(e) => setFrequency(parseFloat(e.target.value))}
-                  className="w-20 accent-black"
-                />
-              </label>
-              <label className="flex items-center space-x-2">
-                <span>NOISE:</span>
-                <input
-                  type="range"
-                  min="0.0"
-                  max="1.0"
-                  step="0.05"
-                  value={noiseLevel}
-                  onChange={(e) => setNoiseLevel(parseFloat(e.target.value))}
-                  className="w-20 accent-black"
-                />
-              </label>
-              <button
-                onClick={() => setShowDerivative(!showDerivative)}
-                className={`px-2.5 py-1 rounded border text-[11px] font-mono font-bold ${
-                  showDerivative ? "border-black text-white bg-black" : "border-slate-300 text-slate-600"
-                }`}
-              >
-                dI/dt: {showDerivative ? "ON" : "OFF"}
-              </button>
-            </div>
-          </div>
-
-          <div className="w-full h-[200px] relative bg-slate-100 rounded-xl border border-slate-200 overflow-hidden">
-            <canvas ref={canvasRef} className="w-full h-full" />
-            <div className="absolute top-2 left-3 flex items-center space-x-4 text-[10px] font-mono font-bold">
-              <span className="text-sky-600">● RAW PHOTON / VOLTAGE STREAM I(t)</span>
-              {showDerivative && <span className="text-black">--- NUMERICAL GRADIENT dI/dt</span>}
-            </div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          <div className="lg:col-span-5 space-y-3 reveal-left-on-scroll">
-            {topics.map((t) => (
-              <button
-                key={t.id}
-                onClick={() => {
-                  sfx.playClick();
-                  setSelectedTopic(t);
-                }}
-                className={`w-full text-left p-4 rounded-xl border transition-all duration-200 flex items-center justify-between ${
-                  selectedTopic?.id === t.id
-                    ? "bg-black text-white border-black shadow-md"
-                    : "bg-white text-black border-slate-200 hover:border-slate-400"
-                }`}
-              >
-                <div>
-                  <span className={`text-[10px] font-mono font-bold uppercase block ${selectedTopic?.id === t.id ? "text-slate-300" : "text-slate-500"}`}>
-                    {t.num} // {t.focus}
-                  </span>
-                  <h4 className="font-space font-bold text-sm sm:text-base mt-0.5">{t.title}</h4>
-                </div>
-                <span className="font-mono">→</span>
-              </button>
-            ))}
-          </div>
-
-          {selectedTopic && (
-            <div className="lg:col-span-7 p-6 sm:p-8 rounded-2xl bg-white border border-slate-300 shadow-sm space-y-6">
-              <div className="flex items-center justify-between pb-4 border-b border-slate-200">
-                <div>
-                  <span className="text-xs font-mono font-bold text-slate-500 uppercase block">RESEARCH FORMULATION</span>
-                  <h3 className="font-space font-bold text-2xl text-black mt-1">{selectedTopic.title}</h3>
-                </div>
-                <span className="text-xs font-mono font-bold text-slate-700 bg-slate-100 px-3 py-1.5 rounded-md border border-slate-200">
-                  {selectedTopic.focus}
-                </span>
-              </div>
-
-              <div className="p-4 rounded-xl bg-slate-900 text-center font-mono text-xs sm:text-sm text-white overflow-x-auto py-5 shadow-inner">
-                <code>{selectedTopic.mathNotation}</code>
-              </div>
-
-              <p className="text-sm font-sans text-slate-700 leading-relaxed font-normal">
-                {selectedTopic.abstract}
-              </p>
-
-              <div className="space-y-2.5">
-                <span className="text-[10px] font-mono font-bold text-slate-500 uppercase block tracking-wider">
-                  KEY RESEARCH INSIGHTS
-                </span>
-                {selectedTopic.keyInsights.map((insight, i) => (
-                  <div key={i} className="flex items-start space-x-3 text-xs font-sans text-slate-800">
-                    <span className="text-black font-mono font-bold mt-0.5">›</span>
-                    <span>{insight}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ==========================================
-// 13. MY JOURNEY SECTION
+// 12. MY JOURNEY SECTION
 // ==========================================
 function Journey() {
   const milestones = useMemo(() => window.PORTFOLIO_DATA?.journeyMilestones || [], []);
@@ -1847,7 +1641,7 @@ function Journey() {
     <section id="journey" className="py-28 px-6 md:px-12 relative bg-slate-50 border-t border-slate-200">
       <div className="max-w-5xl mx-auto">
         <div className="flex items-center space-x-3 mb-6 reveal-left-on-scroll">
-          <span className="text-xs font-mono font-bold text-black tracking-widest uppercase">// 05 • MY JOURNEY</span>
+          <span className="text-xs font-mono font-bold text-black tracking-widest uppercase">// 04 • MY JOURNEY</span>
           <div className="h-[1px] flex-1 bg-slate-200" />
         </div>
 
@@ -1857,7 +1651,7 @@ function Journey() {
               EVOLUTION <span>CHRONICLES</span>
             </h2>
             <p className="text-slate-600 font-sans text-base sm:text-lg mt-3">
-              From discrete logic circuits to embedded firmware, edge IoT, and computational research models.
+              From discrete logic circuits to embedded firmware, edge IoT, and autonomous hardware systems.
             </p>
           </div>
 
@@ -1920,7 +1714,7 @@ function Journey() {
 }
 
 // ==========================================
-// 14. CONTACT SECTION
+// 13. CONTACT SECTION
 // ==========================================
 function Contact() {
   const [copied, setCopied] = useState(false);
@@ -1950,7 +1744,7 @@ function Contact() {
         </h2>
 
         <p className="max-w-xl text-base sm:text-lg text-slate-700 font-sans leading-relaxed mb-12 reveal-on-scroll delay-100">
-          "Have an idea, research project, hardware challenge or technology concept? Let's connect."
+          "Have an idea, embedded project, hardware challenge or technology concept? Let's connect."
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4 mb-16 reveal-on-scroll delay-200">
@@ -2004,7 +1798,7 @@ function Contact() {
 }
 
 // ==========================================
-// 16. FOOTER COMPONENT
+// 14. FOOTER COMPONENT
 // ==========================================
 function Footer() {
   const scrollToTop = () => {
@@ -2020,7 +1814,7 @@ function Footer() {
             <span>GOKULRAJ NATARAJAN</span>
           </a>
           <p className="text-xs font-mono text-slate-400 mt-2">
-            Electronics &amp; IoT • Embedded Systems • AI / ML • Research
+            Electronics &amp; IoT • Embedded Systems • Firmware &amp; Hardware Prototyping
           </p>
         </div>
 
@@ -2029,7 +1823,6 @@ function Footer() {
           <a href="#about" className="hover:text-white transition-colors">ABOUT</a>
           <a href="#domains" className="hover:text-white transition-colors">DOMAINS</a>
           <a href="#projects" className="hover:text-white transition-colors">PROJECTS</a>
-          <a href="#research" className="hover:text-white transition-colors">RESEARCH</a>
           <a href="#journey" className="hover:text-white transition-colors">JOURNEY</a>
           <a href="#contact" className="hover:text-white transition-colors">CONTACT</a>
         </nav>
@@ -2094,7 +1887,6 @@ function App() {
         <About />
         <EngineeringDomains />
         <ProjectsSection onSelectProject={(p) => setSelectedProject(p)} />
-        <ResearchLab />
         <Journey />
         <Contact />
       </main>

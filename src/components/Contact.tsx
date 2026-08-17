@@ -27,7 +27,7 @@ export const Contact: React.FC = () => {
         </h2>
 
         <p className="max-w-xl text-base sm:text-lg text-slate-300 font-sans font-light leading-relaxed mb-12">
-          "Have an idea, research project, hardware challenge or technology concept? Let's connect."
+          "Have an idea, embedded project, hardware challenge or technology concept? Let's connect."
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4 mb-16">

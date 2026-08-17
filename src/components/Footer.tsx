@@ -10,7 +10,7 @@ export const Footer: React.FC = () => {
             <span className="w-2 h-2 rounded-full bg-[#00f0ff]" />
           </a>
           <p className="text-xs font-mono text-slate-400 mt-2">
-            Electronics &amp; IoT • Embedded Systems • AI / ML • Research
+            Electronics &amp; IoT • Embedded Systems • Firmware &amp; Hardware Prototyping
           </p>
         </div>
 
@@ -18,7 +18,7 @@ export const Footer: React.FC = () => {
           <a href="#hero" className="hover:text-[#00f0ff] transition-colors">HOME</a>
           <a href="#about" className="hover:text-[#00f0ff] transition-colors">ABOUT</a>
           <a href="#projects" className="hover:text-[#00f0ff] transition-colors">PROJECTS</a>
-          <a href="#research" className="hover:text-[#00f0ff] transition-colors">RESEARCH</a>
+          <a href="#journey" className="hover:text-[#00f0ff] transition-colors">JOURNEY</a>
           <a href="#contact" className="hover:text-[#00f0ff] transition-colors">CONTACT</a>
         </nav>
 

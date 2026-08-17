@@ -6,7 +6,6 @@ import { About } from './components/About';
 import { TechMarquee } from './components/TechMarquee';
 import { Projects } from './components/Projects';
 import { ProjectDetail } from './components/ProjectDetail';
-import { Research } from './components/Research';
 import { Journey } from './components/Journey';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
@@ -24,7 +23,6 @@ export const App: React.FC = () => {
         <About />
         <TechMarquee />
         <Projects onSelectProject={(p) => setSelectedProject(p)} />
-        <Research />
         <Journey />
         <Contact />
       </main>

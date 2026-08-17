@@ -3,7 +3,7 @@ import React from 'react';
 export const TechMarquee: React.FC = () => {
   const techItems = [
     "ESP32", "Arduino", "Embedded C", "C++", "Python", "IoT", 
-    "Machine Learning", "AI", "LoRa", "Sensors", "Signal Processing", 
+    "FreeRTOS", "PCB Design", "LoRa", "Sensors", "Signal Processing", 
     "MATLAB", "NumPy", "SciPy", "Git", "GitHub"
   ];
 

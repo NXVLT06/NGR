@@ -53,5 +53,22 @@ export const journeyMilestones: JourneyMilestone[] = [
     description: "Synthesizing electronics, firmware, mathematical models, and edge intelligence to design robust, deterministic prototypes engineered from first principles.",
     deliverables: ["Hardware-in-the-Loop Test Benches", "STAR Summit Research Models", "Avionics Payloads", "Smart Infrastructure"],
     badge: "Research & Systems"
+  },
+  {
+    year: "2026",
+    stage: "CISCO CERTIFIED",
+    title: "Cisco Networking Academy — Networking Basics",
+    focus: "Verified Course Certificate, Digital Badge & 5 Module Achievements",
+    description: "Earned official Cisco Networking Academy verified credentials in 'Networking Basics' (Course Certificate & Badge issued Feb 02, 2026) along with 5 individual module achievements covering network fundamentals, IPv4/IPv6 architectures, communications, protocols, and access layers.",
+    deliverables: [
+      "Cisco Verified Course Badge: Networking Basics",
+      "Cisco Course Certificate: Networking Basics (Feb 02, 2026)",
+      "Module Achievement: Network Basics (Jan 19, 2026)",
+      "Module Achievement: Internet Protocol Basics (Jan 19, 2026)",
+      "Module Achievement: Network Communications Basics (Jan 19, 2026)",
+      "Module Achievement: Networking Protocols Basics (Jan 18, 2026)",
+      "Module Achievement: Network Access Basics (Jan 18, 2026)"
+    ],
+    badge: "Cisco Verified"
   }
 ];

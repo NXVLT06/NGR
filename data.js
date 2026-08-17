@@ -1025,12 +1025,29 @@ void calculateAndSendVitals() {
     },
     {
       year: "2026",
-      stage: "CERTIFICATIONS",
-      title: "Technical Certifications & Field Camp Experience",
-      focus: "NPTEL IoT, Cisco Networking Course & Bharat Scouts & Guides Camps",
-      description: "Completed NPTEL certification in Internet of Things (IoT), completed a Cisco Networking Academy course, and actively participated in field camps and training with The Bharat Scouts and Guides.",
-      deliverables: ["NPTEL Internet of Things (IoT) Certified", "Cisco Networking Academy Course", "The Bharat Scouts & Guides Camps", "Embedded Telemetry & Networks"],
-      badge: "Certifications & Camps"
+      stage: "CISCO CERTIFIED",
+      title: "Cisco Networking Academy — Networking Basics",
+      focus: "Verified Course Certificate, Digital Badge & 5 Module Achievements",
+      description: "Earned official Cisco Networking Academy verified credentials in 'Networking Basics' (Course Certificate & Badge issued Feb 02, 2026) along with 5 individual module achievements covering network fundamentals, IPv4/IPv6 architectures, communications, protocols, and access layers.",
+      deliverables: [
+        "Cisco Verified Course Badge: Networking Basics",
+        "Cisco Course Certificate: Networking Basics (Issued: Feb 02, 2026)",
+        "Module Achievement: Network Basics (Issued: Jan 19, 2026)",
+        "Module Achievement: Internet Protocol Basics (Issued: Jan 19, 2026)",
+        "Module Achievement: Network Communications Basics (Issued: Jan 19, 2026)",
+        "Module Achievement: Networking Protocols Basics (Issued: Jan 18, 2026)",
+        "Module Achievement: Network Access Basics (Issued: Jan 18, 2026)"
+      ],
+      badge: "Cisco Verified"
+    },
+    {
+      year: "2026",
+      stage: "CERTIFICATIONS & CAMPS",
+      title: "NPTEL IoT Certification & Field Leadership",
+      focus: "NPTEL Swayam (IIT) • The Bharat Scouts & Guides",
+      description: "Completed NPTEL certification in Internet of Things (IoT), and actively participated in field camps, outdoor survival training, and community leadership with The Bharat Scouts and Guides.",
+      deliverables: ["NPTEL Internet of Things (IoT) Certified", "The Bharat Scouts & Guides Camps", "Embedded Telemetry & Networks", "Field Camp Leadership"],
+      badge: "NPTEL & Scouts"
     }
   ]
 };

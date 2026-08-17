@@ -570,7 +570,7 @@ function Hero() {
           </div>
 
           <p className="text-xs sm:text-sm font-sans text-slate-700 font-medium max-w-sm mb-4 leading-relaxed">
-            "Electronics, embedded systems, IoT and intelligent technology — engineered from concept to working prototype."
+            Electronics, embedded systems, IoT and intelligent technology — engineered from concept to working prototype.
           </p>
 
           <div className="flex items-center gap-3 w-full justify-center">
@@ -790,10 +790,10 @@ function About() {
 
             <div className="space-y-5 text-slate-700 font-sans text-base sm:text-lg leading-relaxed">
               <p className="border-l-3 border-black pl-5 text-black font-medium">
-                "I am Gokulraj Natarajan, an electronics and technology enthusiast focused on embedded systems, IoT, microcontroller firmware, hardware prototyping and experimental engineering."
+                I am Gokulraj Natarajan, an electronics and technology enthusiast focused on embedded systems, IoT, microcontroller firmware, hardware prototyping and experimental engineering.
               </p>
               <p className="text-slate-600">
-                "I enjoy transforming technical concepts into working prototypes — combining electronics, microcontrollers, sensors, software and intelligent algorithms to create practical systems."
+                I enjoy transforming technical concepts into working prototypes — combining electronics, microcontrollers, sensors, software and intelligent algorithms to create practical systems.
               </p>
             </div>
 
@@ -1527,7 +1527,7 @@ function ProjectDetailModal({ project, initialVideoMode = "default", onClose }) 
                 </div>
                 <div className="p-6 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
                   <span className="text-xs font-mono font-bold text-black uppercase block">// SHORT ABSTRACT</span>
-                  <p className="text-sm font-sans text-slate-700 leading-relaxed font-normal italic">"{project.abstract}"</p>
+                  <p className="text-sm font-sans text-slate-700 leading-relaxed font-normal italic">{project.abstract}</p>
                 </div>
               </div>
 
@@ -1631,7 +1631,7 @@ function ProjectsSection({ onSelectProject }) {
               SELECTED <span>PROJECTS</span>
             </h2>
             <p className="text-slate-600 font-sans text-base sm:text-lg mt-3 max-w-xl">
-              "Hardware, embedded firmware and IoT systems built through experimentation."
+              Hardware, embedded firmware and IoT systems built through experimentation.
             </p>
           </div>
           <div className="text-xs font-mono font-bold text-black bg-slate-100 border border-slate-300 px-4 py-2 rounded-lg flex items-center space-x-2 self-start md:self-auto">
@@ -1752,7 +1752,7 @@ function Journey() {
 
               <div className="p-4 rounded-xl bg-slate-100 border border-slate-200 mb-4 text-xs font-mono font-bold text-slate-800 flex items-center space-x-2">
                 <span>→</span>
-                <span>"Bridging theoretical mathematics with deterministic physical silicon."</span>
+                <span>Bridging theoretical mathematics with deterministic physical silicon.</span>
               </div>
 
               <div className="pt-3 border-t border-slate-200 flex flex-wrap gap-2">
@@ -1801,7 +1801,7 @@ function Contact() {
         </h2>
 
         <p className="max-w-xl text-base sm:text-lg text-slate-700 font-sans leading-relaxed mb-12 reveal-on-scroll delay-100">
-          "Have an idea, embedded project, hardware challenge or technology concept? Let's connect."
+          Have an idea, embedded project, hardware challenge or technology concept? Let's connect.
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4 mb-16 reveal-on-scroll delay-200">

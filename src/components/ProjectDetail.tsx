@@ -65,7 +65,7 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onClose }
                 </div>
                 <div className="p-6 rounded-xl bg-white/[0.02] border border-white/10 space-y-3">
                   <span className="text-xs font-mono text-[#00f0ff] uppercase block">// SHORT ABSTRACT</span>
-                  <p className="text-sm font-sans text-slate-300 leading-relaxed font-light italic">"{project.abstract}"</p>
+                  <p className="text-sm font-sans text-slate-300 leading-relaxed font-light italic">{project.abstract}</p>
                 </div>
               </div>
               <div className="p-6 rounded-xl bg-[#051118] border border-[#00f0ff]/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">

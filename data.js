@@ -1000,10 +1000,10 @@ void calculateAndSendVitals() {
       year: "2025 – 2029",
       stage: "ACADEMICS",
       title: "B.E. in Electronics & Communication Engineering (ECE)",
-      focus: "SIMATS University, Chennai • Embedded Systems & IoT",
-      description: "Undergraduate engineering program focusing on embedded systems, microcontroller firmware (C/C++), wireless IoT architectures, sensor network topologies, and deterministic hardware circuit design.",
-      deliverables: ["Embedded Firmware (C/C++)", "Microcontroller Architectures", "Sensor Network Topologies", "Hardware Prototyping"],
-      badge: "SIMATS University"
+      focus: "SIMATS University, Chennai • CGPA: 8.38 • Embedded Systems & IoT",
+      description: "Undergraduate engineering program focusing on embedded systems, microcontroller firmware (C/C++), wireless IoT architectures, sensor network topologies, and deterministic hardware circuit design with an active academic CGPA of 8.38.",
+      deliverables: ["CGPA: 8.38 (Academic Standing)", "Embedded Firmware (C/C++)", "Microcontroller Architectures", "Sensor Network Topologies", "Hardware Prototyping"],
+      badge: "CGPA 8.38 • SIMATS"
     },
     {
       year: "2025",

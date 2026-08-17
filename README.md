@@ -3,7 +3,7 @@
 A state-of-the-art engineering portfolio and interactive hardware archive for **Gokulraj Natarajan**, specializing in **Embedded Systems, Edge IoT, Space Avionics & Telemetry, Signal Processing, and Intelligent Hardware Prototyping**.
 
 🔗 **Live Repository**: [https://github.com/NXVLT06/NGR.git](https://github.com/NXVLT06/NGR.git)  
-🎓 **Institution**: Saveetha Institute of Medical and Technical Sciences (SIMATS Engineering)  
+🎓 **Institution & Academic Standing**: Saveetha Institute of Medical and Technical Sciences (SIMATS Engineering) — **CGPA: 8.38**  
 🏆 **Recognition**: Award of Excellence — Best Capstone Project Award (1st Place, 2025)
 
 ---

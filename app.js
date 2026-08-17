@@ -527,7 +527,7 @@ function Hero() {
                   <span>SIMATS UNIVERSITY</span>
                 </span>
                 <span className="px-2 py-0.5 rounded bg-slate-100 font-bold border border-slate-200 text-[10px]">
-                  ECE (2025–2029)
+                  ECE (2025–2029) • CGPA 8.38
                 </span>
               </div>
 
@@ -771,7 +771,7 @@ function About() {
               <span>INTO REAL SYSTEMS.</span>
             </h2>
 
-            {/* Academic Credentials Card (College, ECE Dept, 2025-2029) */}
+            {/* Academic Credentials Card (College, ECE Dept, 2025-2029, CGPA 8.38) */}
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-300 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono shadow-xs">
               <div className="flex items-center space-x-3">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
@@ -780,9 +780,14 @@ function About() {
                   <span className="text-slate-700 font-semibold text-[11px]">B.E. ELECTRONICS &amp; COMMUNICATION ENGINEERING (ECE DEPT)</span>
                 </div>
               </div>
-              <span className="px-3 py-1 rounded-md bg-black text-white font-bold self-start sm:self-auto text-[11px]">
-                2025 – 2029
-              </span>
+              <div className="flex items-center gap-2 self-start sm:self-auto">
+                <span className="px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-800 font-bold border border-emerald-300 text-[11px]">
+                  CGPA 8.38
+                </span>
+                <span className="px-3 py-1 rounded-md bg-black text-white font-bold text-[11px]">
+                  2025 – 2029
+                </span>
+              </div>
             </div>
 
             <div className="space-y-5 text-slate-700 font-sans text-base sm:text-lg leading-relaxed">

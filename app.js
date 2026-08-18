@@ -1171,32 +1171,81 @@ function ProjectCard({ project, onSelect, index = 0 }) {
 }
 
 // ==========================================
-// 10. PROJECT DETAIL MODAL
+// 8. PROJECT DETAIL MODAL (HIGH-DENSITY MULTI-TAB INSPECTOR)
 // ==========================================
 function ProjectDetailModal({ project, initialVideoMode = "default", onClose }) {
   const hasVideo = Boolean(project?.video || project?.defaultVideo || project?.vrVideo);
   const hasGallery = Boolean(project?.gallery && project.gallery.length > 0);
-  const [selectedVideoMode, setSelectedVideoMode] = useState(initialVideoMode || "default");
+
+  // Build unified media items playlist (videos + gallery output images)
+  const mediaItems = [];
+  if (project?.hasVR && project?.vrVideo && project?.defaultVideo) {
+    mediaItems.push({
+      type: "video",
+      mode: "default",
+      url: project.defaultVideo,
+      title: project.currentView || "Sim Controller Rig",
+      label: "📹 HARDWARE RIG DEMO",
+      badge: "LIVE HARDWARE STREAM"
+    });
+    mediaItems.push({
+      type: "video",
+      mode: "vr",
+      url: project.vrVideo,
+      title: project.vrCurrentView || "VR Cockpit Simulation",
+      label: "🥽 VR SIMULATION DEMO",
+      badge: "VR COCKPIT 1.MP4"
+    });
+  } else if (project?.video || project?.defaultVideo) {
+    mediaItems.push({
+      type: "video",
+      mode: "default",
+      url: project.defaultVideo || project.video,
+      title: project.currentView || (project.title ? project.title.split(" ").slice(0, 3).join(" ") : "Hardware Demo Rig"),
+      label: "📹 LIVE VIDEO DEMO",
+      badge: "1080P HD STREAM"
+    });
+  }
+  if (project?.gallery && project.gallery.length > 0) {
+    project.gallery.forEach((g, idx) => {
+      mediaItems.push({
+        type: "image",
+        url: g.url,
+        title: g.title,
+        caption: g.caption,
+        label: `🖼️ PHOTO ${idx + 1}`,
+        badge: `OUTPUT PHOTO 0${idx + 1}`
+      });
+    });
+  }
+
+  const [activeMediaIndex, setActiveMediaIndex] = useState(0);
 
   useEffect(() => {
-    setSelectedVideoMode(initialVideoMode || "default");
+    if (initialVideoMode === "vr" && mediaItems.findIndex((m) => m.mode === "vr") !== -1) {
+      setActiveMediaIndex(mediaItems.findIndex((m) => m.mode === "vr"));
+    } else {
+      setActiveMediaIndex(0);
+    }
   }, [project, initialVideoMode]);
 
-  const activeVideoUrl = (selectedVideoMode === "vr" && project?.vrVideo)
-    ? project.vrVideo
-    : project?.defaultVideo || project?.video;
+  const activeMedia = mediaItems[activeMediaIndex] || mediaItems[0];
 
   const availableTabs = [
-    ...(hasVideo ? [{ id: "video", label: project?.hasVR ? "01 • VIDEO DEMOS (RIG & VR) 🎥" : "01 • VIDEO DEMO 🎥" }] : []),
-    ...(hasGallery ? [{ id: "gallery", label: hasVideo ? "02 • HARDWARE & TELEMETRY GALLERY 📸" : "01 • HARDWARE & TELEMETRY GALLERY 📸" }] : []),
-    { id: "overview", label: `${hasVideo && hasGallery ? "03" : hasVideo || hasGallery ? "02" : "01"} • OVERVIEW & CONCEPT` },
-    { id: "components", label: `${hasVideo && hasGallery ? "04" : hasVideo || hasGallery ? "03" : "02"} • HARDWARE & STACK` },
-    { id: "workflow", label: `${hasVideo && hasGallery ? "05" : hasVideo || hasGallery ? "04" : "03"} • EXECUTION WORKFLOW` }
+    ...(mediaItems.length > 0 ? [{ id: "video", label: project?.hasVR ? "01 • VIDEO DEMOS (RIG & VR) 🎥" : "01 • VIDEO & OUTPUT MEDIA 🎥" }] : []),
+    ...(hasGallery ? [{ id: "gallery", label: mediaItems.length > 0 ? "02 • HARDWARE & TELEMETRY GALLERY 📸" : "01 • HARDWARE & TELEMETRY GALLERY 📸" }] : []),
+    { id: "overview", label: `${mediaItems.length > 0 && hasGallery ? "03" : mediaItems.length > 0 || hasGallery ? "02" : "01"} • OVERVIEW & CONCEPT` },
+    { id: "components", label: `${mediaItems.length > 0 && hasGallery ? "04" : mediaItems.length > 0 || hasGallery ? "03" : "02"} • HARDWARE & STACK` },
+    { id: "workflow", label: `${mediaItems.length > 0 && hasGallery ? "05" : mediaItems.length > 0 || hasGallery ? "04" : "03"} • EXECUTION WORKFLOW` }
   ];
 
-  const defaultTab = hasVideo ? "video" : hasGallery ? "gallery" : "overview";
+  const defaultTab = mediaItems.length > 0 ? "video" : hasGallery ? "gallery" : "overview";
   const [activeTab, setActiveTab] = useState(defaultTab);
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(0);
+
+  useEffect(() => {
+    setSelectedPhotoIndex(0);
+  }, [project]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -1238,7 +1287,7 @@ function ProjectDetailModal({ project, initialVideoMode = "default", onClose }) 
           </button>
         </div>
 
-        {/* Top Task Bar Tabs: VIDEO, GALLERY, OVERVIEW, HARDWARE, WORKFLOW */}
+        {/* Top Task Bar Tabs */}
         <div className="px-6 sm:px-8 py-3 bg-white border-b border-slate-200 flex items-center space-x-4 sm:space-x-8 overflow-x-auto text-xs font-mono shadow-xs">
           {availableTabs.map((tab) => (
             <button
@@ -1260,44 +1309,32 @@ function ProjectDetailModal({ project, initialVideoMode = "default", onClose }) 
 
         {/* Content Body based on selected Task Bar Tab */}
         <div className="p-6 sm:p-8 overflow-y-auto space-y-8 flex-1">
-          {/* TAB: VIDEO DEMO */}
-          {activeTab === "video" && activeVideoUrl && (
+          {/* TAB: VIDEO DEMO & MULTI-MEDIA VIEWER */}
+          {activeTab === "video" && activeMedia && (
             <div className="space-y-6">
-              {/* Dual Video Stream Switcher for Project 1 */}
-              {project.hasVR && project.vrVideo && project.defaultVideo && (
+              {/* Media Switcher Bar if multiple items */}
+              {mediaItems.length > 1 && (
                 <div className="flex flex-wrap items-center justify-between p-3.5 rounded-xl bg-slate-100 border border-slate-300 gap-3">
                   <div className="flex items-center space-x-2">
-                    <span className="text-xs font-mono font-bold text-slate-800 uppercase">SELECT DEMO STREAM:</span>
+                    <span className="text-xs font-mono font-bold text-slate-800 uppercase">SELECT DEMO STREAM / MEDIA:</span>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <button
-                      onClick={() => {
-                        sfx.playClick();
-                        setSelectedVideoMode("default");
-                      }}
-                      className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-bold flex items-center space-x-1.5 transition-all cursor-pointer ${
-                        selectedVideoMode === "default"
-                          ? "bg-black text-white shadow-md"
-                          : "bg-white text-slate-700 border border-slate-300 hover:border-black"
-                      }`}
-                    >
-                      <span>📹</span>
-                      <span>HARDWARE RIG DEMO</span>
-                    </button>
-                    <button
-                      onClick={() => {
-                        sfx.playClick();
-                        setSelectedVideoMode("vr");
-                      }}
-                      className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-bold flex items-center space-x-1.5 transition-all cursor-pointer ${
-                        selectedVideoMode === "vr"
-                          ? "bg-purple-700 text-white shadow-md ring-2 ring-purple-400"
-                          : "bg-purple-50 text-purple-900 border border-purple-300 hover:bg-purple-100"
-                      }`}
-                    >
-                      <span>🥽</span>
-                      <span>VR SIMULATION DEMO</span>
-                    </button>
+                  <div className="flex items-center space-x-2 overflow-x-auto">
+                    {mediaItems.map((item, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => {
+                          sfx.playClick();
+                          setActiveMediaIndex(idx);
+                        }}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold flex items-center space-x-1.5 transition-all cursor-pointer whitespace-nowrap ${
+                          activeMediaIndex === idx
+                            ? "bg-black text-white shadow-md"
+                            : "bg-white text-slate-700 border border-slate-300 hover:border-black"
+                        }`}
+                      >
+                        <span>{item.label}</span>
+                      </button>
+                    ))}
                   </div>
                 </div>
               )}
@@ -1305,49 +1342,135 @@ function ProjectDetailModal({ project, initialVideoMode = "default", onClose }) 
               <div className="rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 shadow-xl space-y-3 p-3 sm:p-4">
                 <div className="flex items-center justify-between px-2 pt-1 text-xs font-mono text-white">
                   <span className="flex items-center space-x-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping" />
-                    <span className="font-bold">
-                      {selectedVideoMode === "vr"
-                        ? "🥽 LIVE VIRTUAL REALITY (VR) RACING SIMULATION DEMO"
-                        : "📹 LIVE HARDWARE STEERING & SHIFTER RIG DEMO"}
+                    <span className={`w-2.5 h-2.5 rounded-full ${activeMedia.type === "video" ? "bg-red-500 animate-ping" : "bg-blue-500 animate-pulse"}`} />
+                    <span className="font-bold uppercase">
+                      {activeMedia.type === "video"
+                        ? (activeMedia.mode === "vr" ? "🥽 LIVE VIRTUAL REALITY (VR) RACING SIMULATION DEMO" : `📹 LIVE ${project.currentView ? project.currentView.toUpperCase() : project.title.toUpperCase()} DEMO`)
+                        : `🖼️ ${activeMedia.title.toUpperCase()}`}
                     </span>
                   </span>
-                  <span className="text-slate-400 text-[11px] font-mono">1080P HD STREAM</span>
+                  <span className="text-slate-400 text-[11px] font-mono">
+                    {mediaItems.length > 1 ? `MEDIA ${activeMediaIndex + 1} OF ${mediaItems.length} • ` : ""}{activeMedia.badge}
+                  </span>
                 </div>
-                <div className="w-full rounded-xl overflow-hidden bg-black flex items-center justify-center max-h-[460px] shadow-2xl border border-slate-800">
-                  <video
-                    key={activeVideoUrl}
-                    src={activeVideoUrl}
-                    poster={project.poster}
-                    controls
-                    autoPlay
-                    playsInline
-                    loop
-                    className="w-full max-h-[440px] rounded-lg object-contain"
-                  />
+
+                {/* Main Media Display with Next/Prev Buttons */}
+                <div className="w-full rounded-xl overflow-hidden bg-black flex items-center justify-center max-h-[480px] min-h-[300px] shadow-2xl border border-slate-800 relative group/media">
+                  {activeMedia.type === "video" ? (
+                    <video
+                      key={activeMedia.url}
+                      src={activeMedia.url}
+                      poster={project.poster}
+                      controls
+                      autoPlay
+                      playsInline
+                      loop
+                      className="w-full max-h-[460px] rounded-lg object-contain"
+                    />
+                  ) : (
+                    <img
+                      key={activeMedia.url}
+                      src={activeMedia.url}
+                      alt={activeMedia.title}
+                      className="w-full max-h-[460px] object-contain rounded-lg transition-transform duration-300"
+                    />
+                  )}
+
+                  {mediaItems.length > 1 && (
+                    <>
+                      <button
+                        onClick={() => {
+                          sfx.playClick();
+                          setActiveMediaIndex((prev) => (prev > 0 ? prev - 1 : mediaItems.length - 1));
+                        }}
+                        className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/80 hover:bg-black text-white flex items-center justify-center font-mono font-bold text-xl border border-white/20 transition-all opacity-85 hover:opacity-100 hover:scale-105 shadow-xl z-20 cursor-pointer"
+                        title="Previous Media (Video / Image)"
+                      >
+                        ‹
+                      </button>
+                      <button
+                        onClick={() => {
+                          sfx.playClick();
+                          setActiveMediaIndex((prev) => (prev < mediaItems.length - 1 ? prev + 1 : 0));
+                        }}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/80 hover:bg-black text-white flex items-center justify-center font-mono font-bold text-xl border border-white/20 transition-all opacity-85 hover:opacity-100 hover:scale-105 shadow-xl z-20 cursor-pointer"
+                        title="Next Media (Video / Image)"
+                      >
+                        ›
+                      </button>
+                    </>
+                  )}
                 </div>
+
+                {activeMedia.caption && (
+                  <div className="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700 text-slate-200 text-xs sm:text-sm font-sans leading-relaxed">
+                    <span className="font-mono font-bold text-blue-400 block text-xs mb-1 uppercase tracking-wider">
+                      TECHNICAL DESCRIPTION &amp; TELEMETRY:
+                    </span>
+                    {activeMedia.caption}
+                  </div>
+                )}
               </div>
 
+              {/* Media Thumbnails Row if multiple items */}
+              {mediaItems.length > 1 && (
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  {mediaItems.map((item, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => {
+                        sfx.playClick();
+                        setActiveMediaIndex(idx);
+                      }}
+                      className={`p-2 rounded-xl border text-left transition-all flex items-center space-x-2.5 cursor-pointer ${
+                        activeMediaIndex === idx
+                          ? "bg-slate-900 border-black text-white shadow-md ring-2 ring-blue-500"
+                          : "bg-slate-50 border-slate-200 text-slate-700 hover:border-slate-400"
+                      }`}
+                    >
+                      <div className="w-12 h-12 rounded-lg bg-black flex-shrink-0 overflow-hidden border border-slate-300 relative flex items-center justify-center">
+                        {item.type === "video" ? (
+                          <span className="text-lg">▶</span>
+                        ) : (
+                          <img src={item.url} alt={item.title} className="w-full h-full object-cover" />
+                        )}
+                      </div>
+                      <div className="overflow-hidden min-w-0">
+                        <span className="text-[10px] font-mono block text-slate-400">0{idx + 1} • {item.type.toUpperCase()}</span>
+                        <span className="text-xs font-bold font-space truncate block">{item.title}</span>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {/* 3-Card Metrics Row */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs font-mono">
                   <span className="text-slate-500 block">CURRENT VIEW:</span>
                   <span className="text-black font-bold text-sm">
-                    {selectedVideoMode === "vr" ? "VR Cockpit Simulation (1.MP4)" : "Physical Hardware Rig (Steering)"}
+                    {activeMedia.type === "video"
+                      ? (activeMedia.mode === "vr" ? (project.vrCurrentView || "VR Cockpit Simulation") : (project.currentView || "Hardware Demo Rig"))
+                      : (activeMedia.title)}
                   </span>
                 </div>
                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs font-mono">
                   <span className="text-slate-500 block">SYSTEM STATUS:</span>
-                  <span className="text-emerald-600 font-bold text-sm">Active Stream</span>
+                  <span className="text-emerald-600 font-bold text-sm">
+                    {activeMedia.type === "video" ? "Active Stream" : "Verified Output"}
+                  </span>
                 </div>
                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs font-mono">
                   <span className="text-slate-500 block">INPUT PROTOCOL:</span>
-                  <span className="text-black font-bold text-sm">1000Hz HID USB</span>
+                  <span className="text-black font-bold text-sm">
+                    {project.protocol || "1000Hz HID USB"}
+                  </span>
                 </div>
               </div>
             </div>
           )}
 
-          {/* TAB: GALLERY */}
+
           {activeTab === "gallery" && project.gallery && project.gallery.length > 0 && (
             <div className="space-y-6">
               <div className="rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 shadow-xl p-3 sm:p-4 space-y-4">

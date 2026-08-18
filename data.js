@@ -10,13 +10,16 @@ window.PORTFOLIO_DATA = {
       title: "DIY USB Sim Racing Controller",
       subtitle: "Steering Wheel, Pedals & H-Shifter (with VR Integration)",
       hasVR: true,
+      currentView: "Sim Controller Rig",
+      vrCurrentView: "VR Cockpit Simulation",
+      protocol: "1000Hz HID USB",
       category: "Human Interface / Embedded Systems",
       year: "2024",
       abstract: "A plug-and-play gaming peripheral operating as a native USB Human Interface Device via the ATmega32U4 controller with full Virtual Reality (VR) sim racing integration. It reads high-precision steering inputs through an optical rotary encoder, processes throttle and braking from an analog Hall-effect foot pedal, and decodes gear selection across a gated 6+R H-pattern shifter switch matrix.",
       overview: "A custom-built, professional-grade sim racing peripheral unit that interfaces with modern racing simulators and immersive Virtual Reality (VR) environments as a standard USB HID Game Controller without requiring proprietary software drivers.",
       problem: "Commercial direct-drive and entry-level force feedback sim gear is prohibitively expensive, while cheap off-the-shelf controllers suffer from poor potentiometer wear, deadzones, and limited 180° rotation.",
       objective: "Construct a 900° high-resolution USB steering wheel, contactless Hall-effect throttle/brake pedals, and a gated 6-speed + Reverse H-shifter powered by an ATmega32U4 USB microcontroller for high-immersion VR and PC sim racing.",
-      systemConcept: "An ATmega32U4 with native USB controller runs firmware using the Arduino Joystick HID library. A 600 P/R dual-phase optical rotary encoder connects to hardware interrupt pins (2400 counts per revolution in 4X quadrature). Linear Hall-effect sensors deliver contactless pedal position, while microswitches mapped in a diode matrix decode shifter gates for immersive VR cockpit tracking.",
+      systemConcept: "An ATmega32U4 with native USB controller runs firmware using the Arduino Joystick HID library. A 600 P/R dual-phase optical rotary encoder connects to hardware interrupt pins (2400 counts per revolution in 4X quadrature). Linear Hall-effect sensors deliver contactless pedal position, while microswitches mapped in an anti-ghost matrix decode shifter gates for immersive VR cockpit tracking.",
       components: [
         "Arduino Leonardo / Pro Micro (ATmega32U4)",
         "600 P/R Optical Incremental Rotary Encoder (AB 2-Phase)",
@@ -25,10 +28,10 @@ window.PORTFOLIO_DATA = {
         "6–8 Micro Limit Switches (H-Pattern Shifter Gated Matrix)",
         "Heavy-Duty Mechanical Springs and Dampers",
         "Momentary Faceplate Push Buttons (Wheel Controls)",
-        "1N4148 Anti-Ghosting Switching Diodes",
+        "Anti-Ghost Matrix (H-Pattern Shifter)",
         "Shielded High-Speed USB Type-C Cable"
       ],
-      techStack: ["USB HID Protocol", "Virtual Reality (VR) Sim Integration", "Quadrature Encoder Decoding (4X)", "Analog Calibration & Deadzones", "Hardware Interrupts", "Anti-Ghosting Diode Matrix", "Firmware Over-Sampling"],
+      techStack: ["USB HID Protocol", "Virtual Reality (VR) Sim Integration", "Quadrature Encoder Decoding (4X)", "Analog Calibration & Deadzones", "Hardware Interrupts", "Anti-Ghost Matrix", "Firmware Over-Sampling"],
       workflow: [
         "Wheel Sensing: Interrupt service routine on Pins 2 & 3 decodes Phase A & B transitions (2400 counts per 360°)",
         "Pedal Sensing: ADC reads Hall-effect magnetic displacement with 10-bit resolution and custom non-linear gamma curves",
@@ -80,6 +83,8 @@ void loop() {
       num: "02",
       title: "Microcontroller-Based Rocket Stage & Launch Sequence Simulator",
       subtitle: "Automated Launch Sequence & Telemetry Test Bench",
+      currentView: "Rocket Launch Simulator",
+      protocol: "UART / Relay FSM",
       category: "Embedded Systems / Automation",
       year: "2024",
       abstract: "An automated test bench and exhibit controller that synchronizes visual telemetry, dynamic audio, motor spooling, and dual-stage relay actuation across an automated launch countdown sequence upon a single push-button trigger.",
@@ -149,21 +154,23 @@ void loop() {
       id: "proj-03",
       num: "03",
       title: "IoT Based Smart Parking Management Infrastructure",
-      subtitle: "Multiplexed IR & Ultrasonic Array Telemetry • [Awarded: Best Capstone Project]",
+      subtitle: "Multiplexed IR Telemetry & RFID Barrier • [Awarded: Best Capstone Project]",
+      currentView: "Smart Parking System",
+      protocol: "SPI RFID / I2C",
       category: "IoT / Smart Infrastructure",
       year: "2025",
-      abstract: "An automated, closed-loop parking management infrastructure that controls vehicle entry and exit using 13.56 MHz RFID authentication. Multiplexed IR and ultrasonic sensor arrays detect sub-second bay occupancy, updating local LCD screens and broadcasting real-time slot telemetry to reduce urban parking search latency by 40%.",
+      abstract: "An automated, closed-loop parking management infrastructure that controls vehicle entry and exit using 13.56 MHz RFID authentication. Multiplexed IR sensor arrays detect sub-second bay occupancy, updating local LCD screens and broadcasting real-time slot telemetry to reduce urban parking search latency by 40%.",
       overview: "A localized intelligent traffic and facility access controller that automates vehicular entry/exit, maintains real-time slot occupancy counts, and drives visual parking bay indicators. Awarded Best Capstone Project for outstanding circuit layout and energy efficiency.",
       problem: "Urban parking garages suffer from congestion and ticket fraud. Commercial automated systems require complex cloud networks and high licensing fees, making them fragile during network outages.",
       objective: "Develop a robust, standalone access gate and slot tracker using high-frequency RFID authentication, servo barrier actuation, and directional IR proximity tracking.",
-      systemConcept: "An RC522 RFID reader communicates via SPI with an ATmega328P. When a vehicle approaches, scanning an authorized UID causes an SG90 servo to swing the barrier arm 90 degrees. Directional TCRT5000 IR sensor pairs decrement or increment available slot counters displayed on a 16x2 I2C LCD, with dual-color LED indicators designating bay occupancy.",
+      systemConcept: "An RC522 RFID reader communicates via SPI with an ATmega328P. When a vehicle approaches, scanning an authorized UID causes an SG90 servo to swing the barrier arm 90 degrees. Directional IR sensor pairs decrement or increment available slot counters displayed on a 16x2 I2C LCD, with dual-color LED indicators designating bay occupancy.",
       components: [
         "Arduino Uno / Nano (ATmega328P)",
         "RC522 13.56MHz RFID Reader & Antenna Module",
         "MIFARE Classic 1K RFID Cards & Key Fobs",
         "SG90 High-Torque Micro Servo Motor",
         "16×2 I2C Character LCD Display",
-        "TCRT5000 Directional Infrared Proximity Sensors",
+        "IR Sensor Module (Vehicle Detection Array)",
         "High-Brightness Red & Green Parking Bay LEDs",
         "220Ω Current Limiting Resistors",
         "5V Active Buzzer for Audio Chime",
@@ -174,7 +181,7 @@ void loop() {
         "Vehicle Detection: Vehicle pauses at entrance barrier; card presented to RC522 reader",
         "Authentication: MCU checks card UID against firmware whitelist array",
         "Gate Actuation: Upon match, servo rotates barrier arm to 90° and buzzer chirps confirmation",
-        "Passage Tracking: Entry TCRT5000 IR sensor detects vehicle passing; decrements slot count",
+        "Passage Tracking: Entry IR sensor detects vehicle passing; decrements slot count",
         "Gate Closure: Barrier returns to 0° after 3-second safety window; LCD updates remaining slots",
         "Exit Cycle: Exit gate scans card or exit IR trigger, increments slot counter, and clears status"
       ],
@@ -186,8 +193,8 @@ void loop() {
         title: "Best Capstone Project Award (1st Place)",
         organization: "SIMATS Engineering (Saveetha Institute of Medical and Technical Sciences)",
         year: "2025",
-        certificateImage: "assets/images/best_capstone_certificate.png",
-        citation: "Award of Excellence for Best Capstone Project 2025. Recognized for innovative multiplexed IR/Ultrasonic sensor telemetry, high-frequency RFID authentication gate control, and energy-optimized standby power management."
+        certificateImage: "assets/images/best_capstone_certificate.jpeg",
+        citation: "Award of Excellence for Best Capstone Project 2025. Recognized for innovative multiplexed IR sensor telemetry, high-frequency RFID authentication gate control, and energy-optimized standby power management."
       },
       circuitType: "rfid",
       codeSnippet: `// RFID Access Gate Controller
@@ -223,30 +230,29 @@ void checkRFID() {
       id: "proj-04",
       num: "04",
       title: "IoT Enabled Automated Precision Dosing System",
-      subtitle: "Microcontroller, PWM Switching & Liquid Telemetry",
+      subtitle: "ESP32 Microcontroller, PWM Switching & Liquid Telemetry",
+      currentView: "Precision Dosing System",
+      protocol: "PWM / Blynk IoT",
       category: "IoT / Industrial Automation",
       year: "2026",
-      abstract: "An automated closed-loop fluid and chemical dosing platform integrating microcontrollers, liquid level sensors, and power-switching circuits to regulate chemical reagent injection with ±1.5% precision, featuring live Blynk Cloud stroke-rate modulation and emergency failsafe shut-off thresholds.",
-      overview: "An automated closed-loop fluid dosing platform integrating microcontrollers and power-switching circuits to regulate chemical reagent injection with ±1.5% precision. Features real-time cloud telemetry for stroke-rate modulation, tank level tracking, and automated emergency shut-off thresholds.",
+      abstract: "An automated closed-loop fluid and chemical dosing platform driven by an ESP32 microcontroller to regulate chemical reagent injection with ±1.5% precision, featuring live Blynk Cloud stroke-rate modulation and emergency failsafe shut-off thresholds.",
+      overview: "An automated closed-loop fluid dosing platform integrating an ESP32 microcontroller to regulate chemical reagent injection with ±1.5% precision. Features real-time cloud telemetry for stroke-rate modulation, tank level tracking, and automated emergency shut-off thresholds.",
       problem: "Manual fluid and chemical reagent dispensing in laboratories, water treatment plants, and hydroponics leads to operator exposure, dosage variance, and critical system overflows.",
-      objective: "Engineer an automated closed-loop fluid dosing unit combining high-resolution PWM peristaltic/solenoid actuation, fluid level telemetry, and remote Blynk IoT mobile management.",
-      systemConcept: "An ESP32/Arduino microcontroller drives high-current MOSFET switching stages to control fluid pumps with fine duty-cycle PWM. Non-contact liquid level and flow rate sensors monitor fluid passage in real time, streaming volume data to Blynk Cloud while local safety lockouts prevent dry-running and over-dosage.",
+      objective: "Engineer an automated closed-loop fluid dosing unit combining high-resolution PWM peristaltic actuation, fluid level telemetry, and remote Blynk IoT mobile management.",
+      systemConcept: "An ESP32 microcontroller controls fluid dosing pumps with fine duty-cycle PWM. Flow rate sensors monitor fluid passage in real time, streaming volume data to Blynk Cloud while local safety lockouts prevent dry-running and over-dosage.",
       components: [
-        "ESP32 / Arduino MCU",
+        "ESP32 Microcontroller",
         "12V Precision Peristaltic Dosing Pump",
-        "IRF540N MOSFET PWM Power Switch",
-        "Non-Contact Liquid Level Sensor",
         "Flow Meter / Hall Effect Volume Sensor",
         "16×2 I2C Character LCD Display",
         "Blynk IoT Cloud Dashboard",
-        "12V 3A DC Regulated Power Supply",
-        "PC817 Optocoupler Galvanic Isolation Module"
+        "12V 3A DC Regulated Power Supply"
       ],
       techStack: ["PWM Duty-Cycle Modulation", "Closed-Loop Liquid Telemetry", "Blynk IoT Cloud Protocol", "MOSFET Power Switching", "Failsafe Emergency Lockouts", "Embedded C++"],
       workflow: [
-        "Standby & Priming: Check reagent reservoir levels via non-contact sensors",
+        "Standby & Priming: Check reagent reservoir levels via flow calibration",
         "Dosage Configuration: Set target volume (mL) or rate (mL/min) locally or via Blynk mobile dashboard",
-        "PWM Actuation: MCU pulses MOSFET driver with calibrated duty cycle for precision flow regulation",
+        "PWM Actuation: ESP32 pulses dosing driver with calibrated duty cycle for precision flow regulation",
         "Closed-Loop Feedback: Flow sensor verifies dispensed volume against target with ±1.5% tolerance",
         "Telemetry & Failsafe: Streams live tank status to cloud; auto shuts off upon low fluid or sensor disconnect"
       ],
@@ -259,7 +265,6 @@ void checkRFID() {
 #include <BlynkSimpleEsp32.h>
 
 const int PIN_MOSFET_PWM = 18;
-const int PIN_LEVEL_SENSOR = 19;
 const int PIN_FLOW_SENSOR = 23;
 
 volatile int pulseCount = 0;
@@ -272,20 +277,12 @@ void IRAM_ATTR onFlowPulse() {
 
 void setup() {
   pinMode(PIN_MOSFET_PWM, OUTPUT);
-  pinMode(PIN_LEVEL_SENSOR, INPUT);
   pinMode(PIN_FLOW_SENSOR, INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(PIN_FLOW_SENSOR), onFlowPulse, RISING);
 }
 
 void executeDosing(int pwmSpeed) {
-  if (digitalRead(PIN_LEVEL_SENSOR) == LOW) {
-    // Reservoir OK: Start PWM Dosing Pump
-    analogWrite(PIN_MOSFET_PWM, pwmSpeed);
-  } else {
-    // Failsafe Emergency Cutoff
-    analogWrite(PIN_MOSFET_PWM, 0);
-    Blynk.logEvent("tank_depleted", "Warning: Dosing Reagent Depleted!");
-  }
+  analogWrite(PIN_MOSFET_PWM, pwmSpeed);
 }`,
       metrics: [
         { label: "Dosing Accuracy", value: "± 1.5%" },
@@ -296,12 +293,14 @@ void executeDosing(int pwmSpeed) {
     {
       id: "proj-05",
       num: "05",
-      title: "ElderGuard v26.0",
+      title: "Elder Guard System",
       subtitle: "ESP32 Fall Detection & Cellular Emergency Tracker",
+      currentView: "Elder Guard System",
+      protocol: "Cellular GSM / GPS",
       category: "Edge IoT / Safety Technology",
       year: "2026",
       abstract: "A wearable edge-IoT safety device that samples real-time motion kinematics to detect fall impacts, acquires live GPS coordinates, and dispatches automated SMS alert links alongside voice calls across cellular networks without relying on external gateways.",
-      overview: "ElderGuard is a standalone, ultra-low-power edge IoT wearable engineered to safeguard elderly individuals living independently. By running vector magnitude and orientation algorithms on high-frequency IMU data, it differentiates between daily activities and traumatic fall impacts.",
+      overview: "Elder Guard System is a standalone, ultra-low-power edge IoT wearable engineered to safeguard elderly individuals living independently. By running vector magnitude and orientation algorithms on high-frequency IMU data, it differentiates between daily activities and traumatic fall impacts.",
       problem: "Traditional pendant alarms require manual activation by the victim who may be unconscious after a traumatic fall. Standard Bluetooth trackers require a nearby smartphone, rendering them ineffective outdoors.",
       objective: "Construct an untethered, all-in-one wearable safety node that autonomously identifies high-G impact followed by orientation collapse, captures precision GNSS coordinates, and dials designated caregivers via 2G/GSM cellular bands.",
       systemConcept: "The ESP32 reads tri-axial acceleration and angular velocity at 100Hz from the MPU-6050 over I2C. A kinematic threshold filter detects freefall (<0.5G) followed immediately by severe impact (>3.0G) and post-fall inactivity. Upon confirmation, a 15-second cancel buzzer sounds before the SIM800L sends Google Maps SMS coordinates from the Neo-6M GPS.",
@@ -326,12 +325,18 @@ void executeDosing(int pwmSpeed) {
       result: "Prototype / development project. Achieved >94% fall classification accuracy in simulated test drops with <12s total alert dispatch latency and verified live SMS coordinate delivery.",
       status: "Functional Prototype Deployed",
       video: "assets/videos/5.mp4",
-      poster: "assets/images/elderguard_sms_alert.jpeg",
+      image: "assets/images/elderguard_output.jpeg",
+      poster: "assets/images/elderguard_output.jpeg",
       gallery: [
         {
-          url: "assets/images/elderguard_sms_alert.jpeg",
-          title: "Live GPS Fall Detection SMS Alert",
-          caption: "Live GSM cellular SMS transmission showing automated emergency message: 'EMERGENCY: Fall Detected! Please check immediately. Location: http://maps.google.com/maps?q=13.022687,80.155789' received on caregiver phone."
+          url: "assets/images/elderguard_output.jpeg",
+          title: "Live GPS Fall Detection SMS Alert Output",
+          caption: "Live GSM cellular SMS transmission output: 'EMERGENCY: Fall Detected! Please check immediately. Location: http://maps.google.com/maps?q=13.022687,80.155789' automatically dispatched upon kinematic impact detection."
+        },
+        {
+          url: "assets/images/elderguard.jpg",
+          title: "ElderGuard Wearable Hardware Node",
+          caption: "Compact edge wearable hardware prototype integrating ESP32 dual-core MCU, MPU-6050 6-axis IMU, SIM800L cellular modem, and Neo-6M GPS antenna module."
         }
       ],
       circuitType: "iot",
@@ -369,6 +374,8 @@ void fallDetectionTask(void *pvParameters) {
       num: "06",
       title: "Sub-Orbital Satellite & Ground Base Station Telemetry System",
       subtitle: "LoRa Sensor Downlink & Real-Time Ground Station Receiver",
+      currentView: "Satellite Telemetry System",
+      protocol: "433MHz LoRa Telemetry",
       category: "Space Technology / Embedded Avionics",
       year: "2024",
       abstract: "A dual-node space avionics and telemetry infrastructure consisting of an airborne satellite sensor payload that continuously samples 6-DOF inertial kinematics, barometric pressure, altitude, and laser ranging ground clearance, packaging fused multi-sensor data into lightweight binary packets for long-range LoRa radio transmission to an active ground base station.",
@@ -453,6 +460,8 @@ void telemetryBroadcastTask(void *pvParameters) {
       id: "proj-07",
       num: "07",
       title: "Smart Digital Lock System for Secure Access Control",
+      currentView: "Digital Lock Prototype",
+      protocol: "Matrix Keypad / EEPROM",
       category: "Embedded Security",
       year: "2023",
       abstract: "An embedded access control unit that verifies multi-digit PIN passcodes against non-volatile EEPROM storage, pulses an isolated relay channel to actuate high-current electronic door strikes, and triggers warning alerts during unauthorized tamper attempts.",
@@ -514,30 +523,32 @@ void unlockDoor() {
       num: "08",
       title: "Automated Headlight Dipper",
       subtitle: "Anti-Glare Adaptive Beam",
+      currentView: "Adaptive Headlight Dipper",
+      protocol: "Schmitt Trigger / Analog",
       category: "Automotive Safety / Electronics",
       year: "2023",
       abstract: "An automotive safety module that samples directional illumination from approaching vehicles via shielded optical sensors, automatically switching the vehicle's headlight relay from high-beam to low-beam to eliminate oncoming driver glare before restoring standard beams.",
       overview: "A mission-critical automotive safety enhancement module designed to prevent catastrophic nighttime glare blindness. It continuously senses oncoming vehicular headlights and seamlessly triggers beam-dipping relays without requiring driver intervention.",
       problem: "High-beam glare from oncoming night traffic accounts for significant nighttime traffic accidents due to transient flash blindness. Manual headlight dipping is often neglected by distracted or fatigued drivers.",
       objective: "Construct an analog/digital automotive headlight controller with optical collimation that detects approaching high beams, filters ambient moonlight/streetlamps via hysteresis, and actuates automotive switching relays.",
-      systemConcept: "A Light Dependent Resistor (LDR) seated within a narrow-aperture optical collimator tube samples oncoming photon flux. An LM358 operational amplifier acts as a precision Schmitt trigger comparator with adjustable threshold and hysteresis to prevent relay chatter. The output drives an automotive relay via an optocoupler and BC547 transistor, switching the vehicle headlamps between 12V high and low filaments.",
+      systemConcept: "A Light Dependent Resistor (LDR) seated within a narrow-aperture optical collimator tube samples oncoming photon flux. An LM358 operational amplifier acts as a precision Schmitt trigger comparator with adjustable threshold and hysteresis to prevent relay chatter. The output drives a 5V relay module via an optocoupler and BC547 transistor, switching the vehicle headlamps between high and low filaments.",
       components: [
         "LM358 Dual Precision Operational Amplifier",
         "Arduino Nano (Microcontroller Calibration Core)",
         "High-Sensitivity LDR Photocell in Optical Collimator Tube",
         "10kΩ Multi-turn Precision Calibration Potentiometer",
-        "12V 2-Channel High-Current Automotive Relay (30A Rated)",
+        "5V 2-Channel High-Current Relay Module",
         "PC817 Phototransistor Optocoupler Isolation IC",
         "BC547 NPN Driver Transistor",
         "1N4007 High-Voltage Flyback Diodes",
         "12V DC Vehicle Power Step-Down Buck Regulator"
       ],
-      techStack: ["Operational Amplifier Comparators", "Schmitt Trigger Hysteresis", "Optocoupler Galvanic Isolation", "Analog Signal Conditioning", "Automotive 12V Switching", "Optical Collimation Physics"],
+      techStack: ["Operational Amplifier Comparators", "Schmitt Trigger Hysteresis", "Optocoupler Galvanic Isolation", "Analog Signal Conditioning", "5V Relay Switching", "Optical Collimation Physics"],
       workflow: [
         "Optical Collimation: Shielded tube restricts light acceptance angle to ±15° directly facing oncoming lane",
         "Signal Conditioning: LDR voltage divider feeds non-inverting input of LM358 comparator",
         "Threshold Comparison: Oncoming headlamps exceed calibrated V_ref; comparator output swings HIGH",
-        "Galvanic Switching: PC817 optocoupler turns on BC547 transistor, energizing relay coil",
+        "Galvanic Switching: PC817 optocoupler turns on BC547 transistor, energizing 5V relay coil",
         "Beam Dipping: Relay disconnects high-beam filament (55W) and engages low-beam filament (35W)",
         "Hysteresis Recovery: Once oncoming vehicle passes, signal drops below lower threshold with 1.2s delay to prevent fluttering"
       ],
@@ -577,7 +588,7 @@ void loop() {
 }`,
       metrics: [
         { label: "Response Time", value: "120ms" },
-        { label: "Relay Rating", value: "30A @ 14V" },
+        { label: "Relay Coil", value: "5V DC" },
         { label: "Acceptance Angle", value: "±15°" }
       ]
     },
@@ -585,6 +596,8 @@ void loop() {
       id: "proj-09",
       num: "09",
       title: "Discrete Traffic Light Control System",
+      currentView: "Traffic Light Controller",
+      protocol: "Discrete Clock / Logic",
       category: "Digital Electronics",
       year: "2023",
       abstract: "A purely hardware-driven, non-programmable sequential traffic controller where an analog astable clock generator drives a digital decade counter and discrete transistor-switching networks to cycle through timed Red, Yellow, and Green traffic states.",
@@ -636,6 +649,8 @@ void loop() {
       num: "10",
       title: "Microcontroller-Based Optical Pulse & Heart Rate Monitor",
       subtitle: "Optical PPG Pulse Sensor, Dynamic BPM Peak Detection & 16x2 I2C LCD Display",
+      currentView: "Optical Pulse Monitor",
+      protocol: "Optical PPG / I2C",
       category: "Embedded Systems / Biometric Telemetry",
       year: "2024",
       abstract: "A non-invasive biometric telemetry device powered by an ATmega328P microcontroller that reads raw optical photoplethysmography (PPG) waveforms to extract real-time heart rate (BPM), displaying dynamic cardiac telemetry on a high-contrast 16×2 I2C LCD display with edge signal conditioning.",
@@ -708,6 +723,8 @@ void calculateAndSendVitals() {
       num: "11",
       title: "IoT-Based Smart Classroom Monitoring System",
       subtitle: "ESP32 Bi-Directional IR Visitor Counting, LDR Lighting & 12V Fan Mobile IoT Control",
+      currentView: "Smart Classroom System",
+      protocol: "ESP32 Wi-Fi / MQTT",
       category: "IoT / Embedded Systems / Energy Automation",
       year: "2025",
       abstract: "An automated energy conservation and environmental monitoring system driven by an ESP32 microcontroller. It leverages a sequenced dual-IR beam entry/exit sensor array to track real-time classroom occupancy, paired with an LDR ambient light sensor to intelligently toggle 5V opto-isolated relays powering classroom lighting and high-velocity 12V ventilation fans. Features a mobile IoT dashboard for real-time occupancy telemetry, ambient metrics, and manual overrides.",

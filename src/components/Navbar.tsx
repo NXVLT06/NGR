@@ -68,7 +68,7 @@ export const Navbar: React.FC = () => {
       {mobileMenuOpen && (
         <div className="md:hidden fixed inset-0 top-[60px] bg-[#050505]/98 backdrop-blur-2xl z-40 flex flex-col justify-between p-8 border-t border-[#00f0ff]/20">
           <div className="space-y-6 pt-6">
-            <p className="text-xs font-mono tracking-widest text-[#00f0ff]">// NAVIGATION MATRIX</p>
+            <p className="text-xs font-mono tracking-widest text-[#00f0ff]">NAVIGATION MATRIX</p>
             <div className="flex flex-col space-y-4">
               {navLinks.map((link, idx) => (
                 <a

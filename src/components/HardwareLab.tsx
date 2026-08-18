@@ -8,7 +8,7 @@ export const HardwareLab: React.FC = () => {
     <section id="hardware" className="py-28 px-6 md:px-12 relative bg-[#050505] tech-grid-bg">
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center space-x-3 mb-6">
-          <span className="text-xs font-mono text-[#00f0ff] tracking-widest uppercase">// 04 • HARDWARE BENCH</span>
+          <span className="text-xs font-mono text-[#00f0ff] tracking-widest uppercase">04 • HARDWARE BENCH</span>
           <div className="h-[1px] flex-1 bg-gradient-to-r from-[#00f0ff]/30 to-transparent" />
         </div>
 
@@ -51,7 +51,7 @@ export const HardwareLab: React.FC = () => {
             <div className="lg:col-span-5 p-6 sm:p-8 rounded-2xl bg-[#0a0d14] border border-[#00f0ff]/40 shadow-[0_10px_50px_rgba(0,0,0,0.8)] relative overflow-hidden space-y-6">
               <div className="flex items-start justify-between pb-4 border-b border-white/10">
                 <div>
-                  <span className="text-xs font-mono text-[#00f0ff] uppercase block">// SILICON INSPECTOR</span>
+                  <span className="text-xs font-mono text-[#00f0ff] uppercase block">SILICON INSPECTOR</span>
                   <h3 className="font-space font-bold text-2xl text-white mt-1">{activeChip.name}</h3>
                   <span className="text-xs font-mono text-slate-400 block mt-0.5">{activeChip.category}</span>
                 </div>

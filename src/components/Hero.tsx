@@ -12,7 +12,7 @@ export const Hero: React.FC = () => {
         <div className="inline-flex items-center space-x-2.5 px-4 py-1.5 rounded-full border border-[#00f0ff]/30 bg-[#00f0ff]/5 backdrop-blur-md mb-8 animate-pulse-glow">
           <span className="w-2 h-2 rounded-full bg-[#00f0ff] shadow-[0_0_8px_#00f0ff]" />
           <span className="text-xs font-mono tracking-widest text-[#00f0ff] uppercase">
-            GOKUL NATRAJ // EMBEDDED SYSTEMS &amp; HARDWARE RESEARCH
+            GOKULRAJ NATARAJAN • EMBEDDED SYSTEMS &amp; HARDWARE RESEARCH
           </span>
         </div>
 

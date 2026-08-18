@@ -13,7 +13,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
     <section id="projects" className="py-28 px-6 md:px-12 relative bg-[#050505] tech-grid-bg">
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center space-x-3 mb-6">
-          <span className="text-xs font-mono text-[#00f0ff] tracking-widest uppercase">// 02 • SYSTEM ARCHIVE</span>
+          <span className="text-xs font-mono text-[#00f0ff] tracking-widest uppercase">02 • SYSTEM ARCHIVE</span>
           <div className="h-[1px] flex-1 bg-gradient-to-r from-[#00f0ff]/30 to-transparent" />
         </div>
 

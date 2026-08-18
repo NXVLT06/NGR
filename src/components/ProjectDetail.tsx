@@ -60,11 +60,11 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onClose }
             <div className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="p-6 rounded-xl bg-white/[0.02] border border-white/10 space-y-3">
-                  <span className="text-xs font-mono text-[#00f0ff] uppercase block">// SYSTEM OVERVIEW</span>
+                  <span className="text-xs font-mono text-[#00f0ff] uppercase block">SYSTEM OVERVIEW</span>
                   <p className="text-sm font-sans text-slate-300 leading-relaxed font-light">{project.overview}</p>
                 </div>
                 <div className="p-6 rounded-xl bg-white/[0.02] border border-white/10 space-y-3">
-                  <span className="text-xs font-mono text-[#00f0ff] uppercase block">// SHORT ABSTRACT</span>
+                  <span className="text-xs font-mono text-[#00f0ff] uppercase block">SHORT ABSTRACT</span>
                   <p className="text-sm font-sans text-slate-300 leading-relaxed font-light italic">{project.abstract}</p>
                 </div>
               </div>
@@ -83,7 +83,7 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onClose }
 
           {activeTab === "components" && (
             <div className="space-y-4">
-              <span className="text-xs font-mono text-[#00f0ff] uppercase block tracking-wider">// HARDWARE BILL OF MATERIALS</span>
+              <span className="text-xs font-mono text-[#00f0ff] uppercase block tracking-wider">HARDWARE BILL OF MATERIALS</span>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {project.components.map((comp, idx) => (
                   <div key={idx} className="p-3.5 rounded-lg bg-white/[0.02] border border-white/10 flex items-center space-x-3 text-xs font-mono text-slate-300">
@@ -97,7 +97,7 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onClose }
 
           {activeTab === "workflow" && (
             <div className="space-y-3">
-              <span className="text-xs font-mono text-[#00f0ff] uppercase block tracking-wider">// EXECUTION WORKFLOW</span>
+              <span className="text-xs font-mono text-[#00f0ff] uppercase block tracking-wider">EXECUTION WORKFLOW</span>
               {project.workflow.map((step, idx) => (
                 <div key={idx} className="p-4 rounded-xl bg-white/[0.02] border border-white/10 flex items-start space-x-4">
                   <span className="w-7 h-7 rounded-lg bg-[#00f0ff]/10 border border-[#00f0ff]/30 text-[#00f0ff] font-mono text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">

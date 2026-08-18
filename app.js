@@ -391,7 +391,7 @@ function Navbar() {
       {mobileMenuOpen && (
         <div className="lg:hidden fixed inset-x-4 top-20 bg-white/95 backdrop-blur-2xl rounded-3xl border border-slate-200 shadow-2xl p-6 z-50 pointer-events-auto space-y-4 animate-scale-in">
           <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-            <span className="text-xs font-mono font-bold text-slate-600">// GOKULRAJ NATARAJAN</span>
+            <span className="text-xs font-mono font-bold text-slate-800 tracking-wider">GOKULRAJ NATARAJAN</span>
             <button
               onClick={() => setMobileMenuOpen(false)}
               className="text-xs font-mono font-bold text-black border border-slate-300 px-2.5 py-1 rounded-full"
@@ -483,8 +483,8 @@ function Hero() {
           <div className="hero-left-card">
             <div>
               <div className="flex items-center justify-between mb-4 border-b border-slate-200 pb-2.5">
-                <span className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider">
-                  // PROFILE OVERVIEW
+                <span className="text-[10px] font-mono font-bold text-slate-600 uppercase tracking-wider">
+                  PROFILE OVERVIEW
                 </span>
                 <span className="text-slate-700 font-bold text-xs font-mono">
                   ECE • EMBEDDED &amp; IOT
@@ -620,8 +620,8 @@ function Hero() {
             {/* 2. Quick Connect / Contact Me Card */}
             <div className="hero-social-card w-full">
               <div className="flex items-center justify-between mb-3">
-                <span className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider">
-                  // QUICK CONNECT &bull; CONTACT ME
+                <span className="text-[10px] font-mono font-bold text-slate-600 uppercase tracking-wider">
+                  QUICK CONNECT &bull; CONTACT ME
                 </span>
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" title="Available for Collaboration" />
               </div>
@@ -758,7 +758,7 @@ function About() {
     <section id="about" className="py-28 px-6 md:px-12 relative border-t border-slate-200 bg-white">
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center space-x-3 mb-6 reveal-left-on-scroll">
-          <span className="text-xs font-mono font-bold text-black tracking-widest uppercase">// 01 • ABOUT GOKULRAJ NATARAJAN</span>
+          <span className="text-xs font-mono font-bold text-black tracking-widest uppercase">01 • ABOUT GOKULRAJ NATARAJAN</span>
           <div className="h-[1px] flex-1 bg-slate-200" />
         </div>
 
@@ -861,7 +861,7 @@ function EngineeringDomains() {
     <section id="domains" className="py-28 px-6 md:px-12 relative bg-slate-50 tech-grid-bg border-t border-slate-200">
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center space-x-3 mb-6 reveal-left-on-scroll">
-          <span className="text-xs font-mono font-bold text-black tracking-widest uppercase">// 02 • ENGINEERING CAPABILITIES</span>
+          <span className="text-xs font-mono font-bold text-black tracking-widest uppercase">02 • ENGINEERING CAPABILITIES</span>
           <div className="h-[1px] flex-1 bg-slate-200" />
         </div>
 
@@ -1025,8 +1025,8 @@ function ProjectCard({ project, onSelect, index = 0 }) {
           {project.title}
         </h3>
         {project.subtitle && (
-          <p className="text-xs font-mono font-bold text-slate-500 mb-3 tracking-wide">
-            // {project.subtitle}
+          <p className="text-xs font-mono font-semibold text-slate-600 mb-3 tracking-wide">
+            {project.subtitle}
           </p>
         )}
 
@@ -1123,7 +1123,7 @@ function ProjectCard({ project, onSelect, index = 0 }) {
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-black p-4 flex flex-col justify-between text-white">
               <div className="flex items-center justify-between text-[10px] font-mono text-slate-400">
-                <span>// HARDWARE ARCHIVE</span>
+                <span>HARDWARE ARCHIVE</span>
                 <span className="px-2 py-0.5 rounded bg-white/10">{project.year}</span>
               </div>
               <div className="text-center py-2">
@@ -1187,11 +1187,11 @@ function ProjectDetailModal({ project, initialVideoMode = "default", onClose }) 
     : project?.defaultVideo || project?.video;
 
   const availableTabs = [
-    ...(hasVideo ? [{ id: "video", label: project?.hasVR ? "01 // VIDEO DEMOS (RIG & VR) 🎥" : "01 // VIDEO DEMO 🎥" }] : []),
-    ...(hasGallery ? [{ id: "gallery", label: hasVideo ? "02 // HARDWARE & TELEMETRY GALLERY 📸" : "01 // HARDWARE & TELEMETRY GALLERY 📸" }] : []),
-    { id: "overview", label: `${hasVideo && hasGallery ? "03" : hasVideo || hasGallery ? "02" : "01"} // OVERVIEW & CONCEPT` },
-    { id: "components", label: `${hasVideo && hasGallery ? "04" : hasVideo || hasGallery ? "03" : "02"} // HARDWARE & STACK` },
-    { id: "workflow", label: `${hasVideo && hasGallery ? "05" : hasVideo || hasGallery ? "04" : "03"} // EXECUTION WORKFLOW` }
+    ...(hasVideo ? [{ id: "video", label: project?.hasVR ? "01 • VIDEO DEMOS (RIG & VR) 🎥" : "01 • VIDEO DEMO 🎥" }] : []),
+    ...(hasGallery ? [{ id: "gallery", label: hasVideo ? "02 • HARDWARE & TELEMETRY GALLERY 📸" : "01 • HARDWARE & TELEMETRY GALLERY 📸" }] : []),
+    { id: "overview", label: `${hasVideo && hasGallery ? "03" : hasVideo || hasGallery ? "02" : "01"} • OVERVIEW & CONCEPT` },
+    { id: "components", label: `${hasVideo && hasGallery ? "04" : hasVideo || hasGallery ? "03" : "02"} • HARDWARE & STACK` },
+    { id: "workflow", label: `${hasVideo && hasGallery ? "05" : hasVideo || hasGallery ? "04" : "03"} • EXECUTION WORKFLOW` }
   ];
 
   const defaultTab = hasVideo ? "video" : hasGallery ? "gallery" : "overview";
@@ -1267,7 +1267,7 @@ function ProjectDetailModal({ project, initialVideoMode = "default", onClose }) 
               {project.hasVR && project.vrVideo && project.defaultVideo && (
                 <div className="flex flex-wrap items-center justify-between p-3.5 rounded-xl bg-slate-100 border border-slate-300 gap-3">
                   <div className="flex items-center space-x-2">
-                    <span className="text-xs font-mono font-bold text-slate-700 uppercase">// SELECT DEMO STREAM:</span>
+                    <span className="text-xs font-mono font-bold text-slate-800 uppercase">SELECT DEMO STREAM:</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <button
@@ -1312,7 +1312,7 @@ function ProjectDetailModal({ project, initialVideoMode = "default", onClose }) 
                         : "📹 LIVE HARDWARE STEERING & SHIFTER RIG DEMO"}
                     </span>
                   </span>
-                  <span className="text-slate-400 text-[11px]">// 1080P HD STREAM</span>
+                  <span className="text-slate-400 text-[11px] font-mono">1080P HD STREAM</span>
                 </div>
                 <div className="w-full rounded-xl overflow-hidden bg-black flex items-center justify-center max-h-[460px] shadow-2xl border border-slate-800">
                   <video
@@ -1399,7 +1399,7 @@ function ProjectDetailModal({ project, initialVideoMode = "default", onClose }) 
                 {/* Photo Caption */}
                 <div className="p-4 rounded-xl bg-slate-800/80 border border-slate-700 text-slate-200 text-xs sm:text-sm font-sans leading-relaxed">
                   <span className="font-mono font-bold text-blue-400 block text-xs mb-1 uppercase tracking-wider">
-                    // TECHNICAL DESCRIPTION &amp; TELEMETRY:
+                    TECHNICAL DESCRIPTION &amp; TELEMETRY:
                   </span>
                   {project.gallery[selectedPhotoIndex]?.caption}
                 </div>
@@ -1427,7 +1427,7 @@ function ProjectDetailModal({ project, initialVideoMode = "default", onClose }) 
                         className="w-14 h-14 rounded-lg object-cover flex-shrink-0 border border-slate-300"
                       />
                       <div className="overflow-hidden">
-                        <span className="text-[10px] font-mono block text-slate-400">0{idx + 1} //</span>
+                        <span className="text-[10px] font-mono block text-slate-400">0{idx + 1} •</span>
                         <span className="text-xs font-space font-bold truncate block">
                           {item.title}
                         </span>
@@ -1522,22 +1522,22 @@ function ProjectDetailModal({ project, initialVideoMode = "default", onClose }) 
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="p-6 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
-                  <span className="text-xs font-mono font-bold text-black uppercase block">// SYSTEM OVERVIEW</span>
+                  <span className="text-xs font-mono font-bold text-black uppercase block">SYSTEM OVERVIEW</span>
                   <p className="text-sm font-sans text-slate-700 leading-relaxed font-normal">{project.overview}</p>
                 </div>
                 <div className="p-6 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
-                  <span className="text-xs font-mono font-bold text-black uppercase block">// SHORT ABSTRACT</span>
+                  <span className="text-xs font-mono font-bold text-black uppercase block">SHORT ABSTRACT</span>
                   <p className="text-sm font-sans text-slate-700 leading-relaxed font-normal italic">{project.abstract}</p>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="p-6 rounded-xl bg-red-50 border border-red-200 space-y-3">
-                  <span className="text-xs font-mono font-bold text-red-700 uppercase block">// PROBLEM STATEMENT</span>
+                  <span className="text-xs font-mono font-bold text-red-700 uppercase block">PROBLEM STATEMENT</span>
                   <p className="text-sm font-sans text-slate-800 leading-relaxed font-normal">{project.problem}</p>
                 </div>
                 <div className="p-6 rounded-xl bg-blue-50 border border-blue-200 space-y-3">
-                  <span className="text-xs font-mono font-bold text-blue-700 uppercase block">// ENGINEERING OBJECTIVE</span>
+                  <span className="text-xs font-mono font-bold text-blue-700 uppercase block">ENGINEERING OBJECTIVE</span>
                   <p className="text-sm font-sans text-slate-800 leading-relaxed font-normal">{project.objective}</p>
                 </div>
               </div>
@@ -1557,7 +1557,7 @@ function ProjectDetailModal({ project, initialVideoMode = "default", onClose }) 
 
           {activeTab === "components" && (
             <div className="space-y-6">
-              <span className="text-xs font-mono font-bold text-black uppercase block tracking-wider">// HARDWARE BILL OF MATERIALS (BOM)</span>
+              <span className="text-xs font-mono font-bold text-black uppercase block tracking-wider">HARDWARE BILL OF MATERIALS (BOM)</span>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {project.components.map((comp, idx) => (
                   <div key={idx} className="p-3.5 rounded-lg bg-slate-50 border border-slate-200 flex items-center space-x-3 text-xs font-mono text-slate-800">
@@ -1571,7 +1571,7 @@ function ProjectDetailModal({ project, initialVideoMode = "default", onClose }) 
 
           {activeTab === "workflow" && (
             <div className="space-y-4">
-              <span className="text-xs font-mono font-bold text-black uppercase block tracking-wider">// EXECUTION WORKFLOW &amp; SEQUENCE</span>
+              <span className="text-xs font-mono font-bold text-black uppercase block tracking-wider">EXECUTION WORKFLOW &amp; SEQUENCE</span>
               <div className="space-y-3">
                 {project.workflow.map((step, idx) => (
                   <div key={idx} className="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-start space-x-4">
@@ -1621,7 +1621,7 @@ function ProjectsSection({ onSelectProject }) {
     <section id="projects" className="py-28 px-6 md:px-12 relative bg-white border-t border-slate-200 tech-grid-bg">
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center space-x-3 mb-6 reveal-left-on-scroll">
-          <span className="text-xs font-mono font-bold text-black tracking-widest uppercase">// 03 • SYSTEM ARCHIVE</span>
+          <span className="text-xs font-mono font-bold text-black tracking-widest uppercase">03 • SYSTEM ARCHIVE</span>
           <div className="h-[1px] flex-1 bg-slate-200" />
         </div>
 
@@ -1698,7 +1698,7 @@ function Journey() {
     <section id="journey" className="py-28 px-6 md:px-12 relative bg-slate-50 border-t border-slate-200">
       <div className="max-w-5xl mx-auto">
         <div className="flex items-center space-x-3 mb-6 reveal-left-on-scroll">
-          <span className="text-xs font-mono font-bold text-black tracking-widest uppercase">// 04 • MY JOURNEY</span>
+          <span className="text-xs font-mono font-bold text-black tracking-widest uppercase">04 • MY JOURNEY</span>
           <div className="h-[1px] flex-1 bg-slate-200" />
         </div>
 
@@ -1739,7 +1739,7 @@ function Journey() {
                     {m.title}
                   </h3>
                 </div>
-                <span className="text-xs font-mono font-bold text-slate-600">// {m.badge}</span>
+                <span className="text-xs font-mono font-bold text-slate-700 px-2.5 py-0.5 rounded bg-slate-100 border border-slate-200">{m.badge}</span>
               </div>
 
               <p className="text-xs font-mono text-slate-500 mb-4">

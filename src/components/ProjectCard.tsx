@@ -37,7 +37,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) =
         </h3>
         {project.subtitle && (
           <p className="text-xs font-mono text-cyan-300/80 mb-4 tracking-wide">
-            // {project.subtitle}
+            {project.subtitle}
           </p>
         )}
 

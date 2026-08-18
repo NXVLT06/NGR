@@ -12,7 +12,7 @@ export const About: React.FC = () => {
     <section id="about" className="py-28 px-6 md:px-12 relative border-t border-white/5 bg-[#080808]">
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center space-x-3 mb-6">
-          <span className="text-xs font-mono text-[#00f0ff] tracking-widest uppercase">// 01 • ABOUT GOKUL NATRAJ</span>
+          <span className="text-xs font-mono text-[#00f0ff] tracking-widest uppercase">01 • ABOUT GOKULRAJ NATARAJAN</span>
           <div className="h-[1px] flex-1 bg-gradient-to-r from-[#00f0ff]/30 to-transparent" />
         </div>
 
@@ -35,7 +35,7 @@ export const About: React.FC = () => {
 
           <div className="lg:col-span-5 space-y-4">
             <div className="p-8 rounded-2xl bg-[#0a0d14] border border-[#00f0ff]/20 shadow-[0_10px_40px_rgba(0,0,0,0.6)] relative overflow-hidden">
-              <span className="text-xs font-mono text-[#00f0ff] tracking-widest block mb-6 uppercase">// ENGINEERING METRICS</span>
+              <span className="text-xs font-mono text-[#00f0ff] tracking-widest block mb-6 uppercase">ENGINEERING METRICS</span>
               <div className="grid grid-cols-2 gap-6">
                 {stats.map((stat, i) => (
                   <div key={i} className="space-y-1">

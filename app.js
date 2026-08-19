@@ -1991,14 +1991,9 @@ function CreativeCard({ category, isHovered, onHover, onLeave }) {
       >
         {/* Top Header: Number & Category Icon */}
         <div className="flex items-center justify-between mb-5">
-          <div className="flex items-center space-x-2.5">
-            <span className="px-2.5 py-1 rounded bg-black text-white font-mono text-xs font-bold tracking-wider">
-              {category.num}
-            </span>
-            <span className="text-xs font-mono font-bold text-slate-400 uppercase tracking-widest">
-              DISCIPLINE
-            </span>
-          </div>
+          <span className="px-2.5 py-1 rounded bg-black text-white font-mono text-xs font-bold tracking-wider">
+            {category.num}
+          </span>
 
           <div className="creative-icon-box">
             {renderIcon()}

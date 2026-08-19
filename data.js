@@ -1178,5 +1178,54 @@ void loop() {
       deliverables: ["NPTEL Internet of Things (IoT) Certified", "The Bharat Scouts & Guides Camps", "Embedded Telemetry & Networks", "Field Camp Leadership"],
       badge: "NPTEL & Scouts"
     }
-  ]
+  ],
+  creativeLab: {
+    badge: "04 • VISUAL & MOTION LAB",
+    heading: "CREATIVE LAB",
+    subtitle: "Frames. Motion. Stories.",
+    description: "Bridging precision engineering with cinematic visual storytelling, dynamic camera stabilization, high-fidelity color grading, and creative frame composition.",
+    categories: [
+      {
+        id: "editor",
+        num: "01",
+        title: "EDITOR",
+        focus: "Video Editing • Color Grading",
+        tagline: "Narrative pacing, rhythmic cuts, multi-cam sync & professional color curves.",
+        software: [
+          "Adobe Premiere Pro",
+          "Adobe After Effects",
+          "DaVinci Resolve",
+          "CapCut (for quick edits)"
+        ],
+        specialties: ["Color Grading & LUTs", "Sound Design & Foley", "Motion Graphics & VFX", "Pacing & Continuity"]
+      },
+      {
+        id: "videography",
+        num: "02",
+        title: "VIDEOGRAPHY",
+        focus: "Cinematic Shooting",
+        tagline: "3-axis gimbal movement, dynamic tracking shots, framing & cinematic storytelling.",
+        software: [
+          "Adobe Lightroom (for color reference)",
+          "DaVinci Resolve (for grading)",
+          "Final Cut Pro (optional workflow support)"
+        ],
+        specialties: ["3-Axis Stabilization", "Dynamic Parallax Moves", "Low-Light Cinematography", "B-Roll Sequences"]
+      },
+      {
+        id: "photography",
+        num: "03",
+        title: "PHOTOGRAPHY",
+        focus: "Portraits • Creative Photography",
+        tagline: "Natural & studio light mastery, crisp bokeh portraiture & raw color perfection.",
+        software: [
+          "Adobe Lightroom",
+          "Adobe Photoshop",
+          "Capture One"
+        ],
+        specialties: ["Studio Portraiture", "High-Dynamic-Range RAW", "Editorial Retouching", "Creative Framing"]
+      }
+    ]
+  }
 };
+

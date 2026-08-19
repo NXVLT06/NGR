@@ -254,8 +254,9 @@ function Navbar() {
     { label: "ABOUT", short: "02", icon: "✦", href: "#about", id: "about" },
     { label: "DOMAINS", short: "03", icon: "▦", href: "#domains", id: "domains" },
     { label: "PROJECTS", short: "04", icon: "◫", href: "#projects", id: "projects" },
-    { label: "JOURNEY", short: "05", icon: "⏳", href: "#journey", id: "journey" },
-    { label: "CONTACT", short: "06", icon: "✉", href: "#contact", id: "contact" }
+    { label: "CREATIVE SKILLS", short: "05", icon: "◎", href: "#creative-skills", id: "creative-skills" },
+    { label: "JOURNEY", short: "06", icon: "⏳", href: "#journey", id: "journey" },
+    { label: "CONTACT", short: "07", icon: "✉", href: "#contact", id: "contact" }
   ];
 
   useEffect(() => {
@@ -1811,7 +1812,324 @@ function ProjectsSection({ onSelectProject }) {
 }
 
 // ==========================================
-// 12. MY JOURNEY SECTION
+// 12. 3D INTERACTIVE GIMBAL HERO COMPONENT
+// ==========================================
+function InteractiveGimbalHero({ hoveredCard, gimbalImage }) {
+  const containerRef = useRef(null);
+  const [tiltStyle, setTiltStyle] = useState({});
+  const [isMouseOver, setIsMouseOver] = useState(false);
+
+  const handleMouseMove = (e) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = ((y - centerY) / centerY) * -12;
+    const rotateY = ((x - centerX) / centerX) * 14;
+    const translateZ = 30;
+
+    setTiltStyle({
+      transform: `perspective(1200px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateZ(${translateZ}px) scale(1.03)`
+    });
+  };
+
+  const handleMouseEnter = () => {
+    setIsMouseOver(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsMouseOver(false);
+    setTiltStyle({
+      transform: "perspective(1200px) rotateX(0deg) rotateY(0deg) translateZ(0px) scale(1)"
+    });
+  };
+
+  // Card hover dynamic styling
+  const getCardHoverTransform = () => {
+    if (isMouseOver) return tiltStyle;
+    if (hoveredCard === "editor") {
+      return {
+        transform: "perspective(1200px) rotateY(-14deg) rotateZ(2deg) translateX(-20px) scale(1.03)",
+        filter: "drop-shadow(-15px 25px 35px rgba(0, 0, 0, 0.16))"
+      };
+    }
+    if (hoveredCard === "videography") {
+      return {
+        transform: "perspective(1200px) rotateX(8deg) scale(1.05) translateY(-6px)",
+        filter: "drop-shadow(0px 30px 45px rgba(0, 0, 0, 0.18))"
+      };
+    }
+    if (hoveredCard === "photography") {
+      return {
+        transform: "perspective(1200px) rotateY(14deg) rotateZ(-2deg) translateX(20px) scale(1.03)",
+        filter: "drop-shadow(15px 25px 35px rgba(0, 0, 0, 0.16))"
+      };
+    }
+    return {
+      transform: "perspective(1200px) rotateX(0deg) rotateY(0deg) scale(1)"
+    };
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className="gimbal-stage-container cursor-grab active:cursor-grabbing"
+    >
+      <div className="gimbal-stage-backdrop" />
+
+      {/* Floating 3D Image Frame */}
+      <div
+        style={getCardHoverTransform()}
+        className={`gimbal-floating-frame ${!hoveredCard && !isMouseOver ? "gimbal-auto-float" : ""}`}
+      >
+        <img
+          src={gimbalImage || "assets/images/dji_gimbal.png"}
+          alt="DJI Osmo Mobile 7 3-Axis Stabilizer"
+          className="gimbal-interactive-img"
+          draggable="false"
+        />
+      </div>
+
+      {/* Telemetry Status Pill */}
+      <div className="gimbal-telemetry-badge">
+        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+        <span className="font-mono font-bold tracking-wider">
+          DJI OSMO MOBILE • 3-AXIS ACTIVE STABILIZATION • ACTIVE TRACK 6.0
+        </span>
+      </div>
+    </div>
+  );
+}
+
+// ==========================================
+// 13. CREATIVE CATEGORY CARD COMPONENT
+// ==========================================
+function CreativeCard({ category, isHovered, onHover, onLeave }) {
+  const cardRef = useRef(null);
+  const [expanded, setExpanded] = useState(false);
+  const [tiltStyle, setTiltStyle] = useState({});
+
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = ((y - centerY) / centerY) * -6;
+    const rotateY = ((x - centerX) / centerX) * 6;
+
+    setTiltStyle({
+      transform: `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`
+    });
+  };
+
+  const handleMouseEnter = () => {
+    sfx.playHover();
+    onHover();
+  };
+
+  const handleMouseLeave = () => {
+    setTiltStyle({
+      transform: "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)"
+    });
+    onLeave();
+  };
+
+  const toggleExpand = (e) => {
+    e.stopPropagation();
+    sfx.playClick();
+    setExpanded(!expanded);
+  };
+
+  const renderIcon = () => {
+    if (category.id === "editor") {
+      return (
+        <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2" />
+          <path d="M7 8v8" />
+          <path d="M12 4v16" />
+          <path d="M17 8v8" />
+        </svg>
+      );
+    }
+    if (category.id === "videography") {
+      return (
+        <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="m22 8-6 4 6 4V8Z" />
+          <rect width="14" height="12" x="2" y="6" rx="2" />
+        </svg>
+      );
+    }
+    return (
+      <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+        <circle cx="12" cy="13" r="3" />
+      </svg>
+    );
+  };
+
+  const isSoftwareVisible = isHovered || expanded;
+
+  return (
+    <div className="creative-card-wrapper h-full">
+      <div
+        ref={cardRef}
+        style={tiltStyle}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onClick={toggleExpand}
+        className={`creative-card ${isHovered ? "active-hovered" : ""}`}
+      >
+        {/* Top Header: Number & Category Icon */}
+        <div className="flex items-center justify-between mb-5">
+          <div className="flex items-center space-x-2.5">
+            <span className="px-2.5 py-1 rounded bg-black text-white font-mono text-xs font-bold tracking-wider">
+              {category.num}
+            </span>
+            <span className="text-xs font-mono font-bold text-slate-400 uppercase tracking-widest">
+              DISCIPLINE
+            </span>
+          </div>
+
+          <div className="creative-icon-box">
+            {renderIcon()}
+          </div>
+        </div>
+
+        {/* Title & Subtitle */}
+        <div className="mb-4">
+          <h3 className="font-space font-extrabold text-2xl text-black tracking-tight mb-1">
+            {category.title}
+          </h3>
+          <p className="font-space font-bold text-sm text-slate-800 tracking-wide">
+            {category.focus}
+          </p>
+        </div>
+
+        {/* Tagline / Description */}
+        <p className="text-xs sm:text-sm font-sans text-slate-600 leading-relaxed mb-6 font-normal">
+          {category.tagline}
+        </p>
+
+        {/* Domain Specialties Badges */}
+        <div className="flex flex-wrap gap-1.5 mb-6">
+          {category.specialties?.map((spec, i) => (
+            <span key={i} className="px-2.5 py-0.5 rounded text-[11px] font-mono text-slate-600 bg-slate-100 border border-slate-200">
+              {spec}
+            </span>
+          ))}
+        </div>
+
+        {/* Software Used Section (Subtle, Muted, Expands on Hover/Click) */}
+        <div className="mt-auto pt-4 border-t border-slate-200/80">
+          <div className="flex items-center justify-between mb-2.5 cursor-pointer">
+            <span className="text-[11px] font-mono font-bold text-slate-500 uppercase tracking-wider flex items-center space-x-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-slate-400" />
+              <span>SOFTWARE I USE:</span>
+            </span>
+            <span className="text-[10px] font-mono text-slate-400 font-semibold">
+              {isSoftwareVisible ? "ACTIVE" : "HOVER / TAP"}
+            </span>
+          </div>
+
+          <div
+            className="software-reveal-wrapper space-y-1.5"
+            style={{
+              maxHeight: isSoftwareVisible ? "240px" : "48px",
+              opacity: isSoftwareVisible ? 1 : 0.8
+            }}
+          >
+            <div className="flex flex-wrap gap-1.5">
+              {category.software?.map((tool, idx) => (
+                <span
+                  key={idx}
+                  className={`software-pill-tag ${
+                    isSoftwareVisible ? "border-slate-300 bg-white" : "border-slate-200 bg-slate-50 opacity-85"
+                  }`}
+                >
+                  <span className="text-slate-400 font-mono text-[9px]">◆</span>
+                  <span>{tool}</span>
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ==========================================
+// 14. CREATIVE SKILLS SECTION
+// ==========================================
+function CreativeSkills() {
+  const [hoveredCard, setHoveredCard] = useState(null);
+  const data = useMemo(() => window.PORTFOLIO_DATA?.creativeSkills || null, []);
+  const categories = useMemo(() => data?.categories || [], [data]);
+
+  return (
+    <section id="creative-skills" className="py-28 px-6 md:px-12 relative bg-white border-t border-slate-200 creative-skills-section">
+      <div className="max-w-6xl mx-auto">
+        {/* Section Header Badge */}
+        <div className="flex items-center space-x-3 mb-6 reveal-left-on-scroll">
+          <span className="text-xs font-mono font-bold text-black tracking-widest uppercase">
+            {data?.badge || "04 • CREATIVE SKILLS"}
+          </span>
+          <div className="h-[1px] flex-1 bg-slate-200" />
+        </div>
+
+        {/* Title & Subtitle */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6 reveal-on-scroll">
+          <div>
+            <h2 className="font-space font-extrabold text-4xl sm:text-5xl md:text-6xl text-black tracking-tight leading-[1.05]">
+              CREATIVE <span>SKILLS</span>
+            </h2>
+            <p className="text-slate-600 font-sans text-base sm:text-lg mt-3 max-w-xl font-medium">
+              Frames. Motion. Stories.
+            </p>
+          </div>
+          <div className="text-xs font-mono font-bold text-black bg-slate-100 border border-slate-300 px-4 py-2 rounded-lg flex items-center space-x-2 self-start md:self-auto">
+            <span className="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse" />
+            <span>CINEMATOGRAPHY • POST-PRODUCTION • VISUALS</span>
+          </div>
+        </div>
+
+        {/* 3D Interactive Gimbal Showcase */}
+        <div className="reveal-scale-on-scroll mb-10">
+          <InteractiveGimbalHero
+            hoveredCard={hoveredCard}
+            gimbalImage={data?.gimbalImage}
+          />
+        </div>
+
+        {/* 3 Creative Category Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {categories.map((cat) => (
+            <CreativeCard
+              key={cat.id}
+              category={cat}
+              isHovered={hoveredCard === cat.id}
+              onHover={() => setHoveredCard(cat.id)}
+              onLeave={() => setHoveredCard(null)}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ==========================================
+// 15. MY JOURNEY SECTION
 // ==========================================
 function Journey() {
   const milestones = useMemo(() => window.PORTFOLIO_DATA?.journeyMilestones || [], []);
@@ -1821,7 +2139,7 @@ function Journey() {
     <section id="journey" className="py-28 px-6 md:px-12 relative bg-slate-50 border-t border-slate-200">
       <div className="max-w-5xl mx-auto">
         <div className="flex items-center space-x-3 mb-6 reveal-left-on-scroll">
-          <span className="text-xs font-mono font-bold text-black tracking-widest uppercase">04 • MY JOURNEY</span>
+          <span className="text-xs font-mono font-bold text-black tracking-widest uppercase">05 • MY JOURNEY</span>
           <div className="h-[1px] flex-1 bg-slate-200" />
         </div>
 
@@ -2003,6 +2321,7 @@ function Footer() {
           <a href="#about" className="hover:text-white transition-colors">ABOUT</a>
           <a href="#domains" className="hover:text-white transition-colors">DOMAINS</a>
           <a href="#projects" className="hover:text-white transition-colors">PROJECTS</a>
+          <a href="#creative-skills" className="hover:text-white transition-colors">CREATIVE SKILLS</a>
           <a href="#journey" className="hover:text-white transition-colors">JOURNEY</a>
           <a href="#contact" className="hover:text-white transition-colors">CONTACT</a>
         </nav>
@@ -2071,6 +2390,7 @@ function App() {
           setSelectedProject(p);
           setInitialVideoMode(mode);
         }} />
+        <CreativeSkills />
         <Journey />
         <Contact />
       </main>

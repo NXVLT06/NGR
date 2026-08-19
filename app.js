@@ -1818,13 +1818,6 @@ function InteractiveGimbalHero({ hoveredCard, gimbalImage }) {
   const containerRef = useRef(null);
   const [tiltStyle, setTiltStyle] = useState({});
   const [isMouseOver, setIsMouseOver] = useState(false);
-  const [selectedScene, setSelectedScene] = useState("alpine");
-
-  const sceneImages = {
-    alpine: "assets/images/gimbal_scene_alpine.png",
-    sunset: "assets/images/gimbal_scene_sunset.png",
-    aurora: "assets/images/gimbal_scene_aurora.png"
-  };
 
   const handleMouseMove = (e) => {
     if (!containerRef.current) return;
@@ -1880,8 +1873,6 @@ function InteractiveGimbalHero({ hoveredCard, gimbalImage }) {
     };
   };
 
-  const activeSrc = sceneImages[selectedScene] || gimbalImage || "assets/images/dji_gimbal.png";
-
   return (
     <div
       ref={containerRef}
@@ -1898,52 +1889,19 @@ function InteractiveGimbalHero({ hoveredCard, gimbalImage }) {
         className={`gimbal-floating-frame ${!hoveredCard && !isMouseOver ? "gimbal-auto-float" : ""}`}
       >
         <img
-          src={activeSrc}
-          alt="DJI Osmo Mobile 7 3-Axis Stabilizer with Scenery Viewfinder"
+          src={gimbalImage || "assets/images/dji_gimbal.png"}
+          alt="DJI Osmo Mobile 7 3-Axis Stabilizer"
           className="gimbal-interactive-img"
           draggable="false"
         />
       </div>
 
-      {/* Telemetry Status Pill & Scenery Controls */}
-      <div className="flex flex-col sm:flex-row items-center gap-2.5 mt-5 z-10">
-        <div className="gimbal-telemetry-badge !mt-0">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="font-mono font-bold tracking-wider">
-            DJI OSMO MOBILE • 3-AXIS ACTIVE STABILIZATION • ACTIVE TRACK 6.0
-          </span>
-        </div>
-
-        {/* Viewfinder Scenery Switcher */}
-        <div className="flex items-center space-x-1.5 p-1 rounded-full bg-slate-100/90 border border-slate-200 backdrop-blur-md">
-          <button
-            onClick={() => { sfx.playClick(); setSelectedScene("alpine"); }}
-            title="Alpine Glacial Mountain"
-            className={`px-2.5 py-1 rounded-full text-[11px] font-mono font-bold transition-all ${
-              selectedScene === "alpine" ? "bg-black text-white shadow-xs" : "text-slate-600 hover:text-black"
-            }`}
-          >
-            🏔️ Alpine
-          </button>
-          <button
-            onClick={() => { sfx.playClick(); setSelectedScene("sunset"); }}
-            title="Sunset Coastal Horizon"
-            className={`px-2.5 py-1 rounded-full text-[11px] font-mono font-bold transition-all ${
-              selectedScene === "sunset" ? "bg-black text-white shadow-xs" : "text-slate-600 hover:text-black"
-            }`}
-          >
-            🌅 Sunset
-          </button>
-          <button
-            onClick={() => { sfx.playClick(); setSelectedScene("aurora"); }}
-            title="Cosmic Aurora Night"
-            className={`px-2.5 py-1 rounded-full text-[11px] font-mono font-bold transition-all ${
-              selectedScene === "aurora" ? "bg-black text-white shadow-xs" : "text-slate-600 hover:text-black"
-            }`}
-          >
-            🌌 Aurora
-          </button>
-        </div>
+      {/* Telemetry Status Pill */}
+      <div className="gimbal-telemetry-badge">
+        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+        <span className="font-mono font-bold tracking-wider">
+          DJI OSMO MOBILE • 3-AXIS ACTIVE STABILIZATION • ACTIVE TRACK 6.0
+        </span>
       </div>
     </div>
   );
